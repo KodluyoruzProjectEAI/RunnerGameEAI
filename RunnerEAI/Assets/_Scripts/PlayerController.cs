@@ -2,19 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace Player
 {
-    
-    //deneme1
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerController : PlayerData
     {
-        
+        PlayerMover _playerMover;
+        PlayerInput _playerInput;
+        void Awake()
+        {
+            _playerMover = new PlayerMover(this);
+            _playerInput = new PlayerInput();
+        }
+        void FixedUpdate()
+        {
+            _playerMover.Move(_playerInput.GetInput(),HorizontalSpeed,VerticalSpeed);
+        }
+
+
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
