@@ -21,7 +21,7 @@ namespace Player
         }
         public void Active()
         {
-
+            //Deeeeðiþiklik
         }
     }
 
