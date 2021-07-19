@@ -6,20 +6,17 @@ namespace Player
 {
     public class PlayerController : PlayerData
     {
-        PlayerMover _playerMover;
+        HorizontalMover _horizontalMover;
         PlayerInput _playerInput;
         void Awake()
         {
-            _playerMover = new PlayerMover(this);
+            _horizontalMover= new HorizontalMover(this);
             _playerInput = new PlayerInput();
         }
         void FixedUpdate()
         {
-            _playerMover.Move(_playerInput.GetInput(),HorizontalSpeed,VerticalSpeed);
+           _horizontalMover.Active(_playerInput.GetInput(),HorizontalSpeed);
         }
-
-
-
     }
 
 }
