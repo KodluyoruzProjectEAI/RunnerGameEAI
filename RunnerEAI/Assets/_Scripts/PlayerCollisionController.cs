@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.Collision
+public class PlayerCollisionController : MonoBehaviour
 {
-
+    private Vector3 slm;
 }
