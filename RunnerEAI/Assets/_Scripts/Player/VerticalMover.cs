@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VerticalMover : MonoBehaviour
+namespace Player
 {
-    // Start is called before the first frame update
-    void Start()
+    public class VerticalMover
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PlayerController _playerController;
+        Rigidbody rb;
+        public VerticalMover(PlayerController playerController)
+        {
+            rb = playerController.GetComponent<Rigidbody>();
+            _playerController = playerController;
+        }
+        public void Active(float verticalSpeed)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, verticalSpeed);
+        }
     }
 }
+
