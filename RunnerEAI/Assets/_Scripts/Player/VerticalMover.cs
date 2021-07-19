@@ -6,12 +6,10 @@ namespace Player
 {
     public class VerticalMover
     {
-        PlayerController _playerController;
         Rigidbody rb;
         public VerticalMover(PlayerController playerController)
         {
             rb = playerController.GetComponent<Rigidbody>();
-            _playerController = playerController;
         }
         public void Active(float verticalSpeed)
         {
