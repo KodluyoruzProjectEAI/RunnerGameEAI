@@ -18,9 +18,8 @@ namespace Player
         public void Move(float inputHorValue,float horizontalSpeed,float verticalSpeed)
         {
             rb.velocity = new Vector3(horizontalSpeed * inputHorValue, 0, verticalSpeed);    
+            //DENEME 1,2,3
         }
-
-
     }
 
 }
