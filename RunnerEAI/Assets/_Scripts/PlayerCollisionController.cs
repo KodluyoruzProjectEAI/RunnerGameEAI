@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class PlayerCollisionController : MonoBehaviour
 {
-    private Vector3 slm;
+
+    private Vector3 offçoksýcak;
 }
