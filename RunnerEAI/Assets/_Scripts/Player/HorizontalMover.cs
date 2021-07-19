@@ -19,6 +19,10 @@ namespace Player
         {
             rb.velocity = new Vector3(horizontalSpeed * inputHorValue, 0, 0);    
         }
+        public void Active()
+        {
+
+        }
     }
 
 }
