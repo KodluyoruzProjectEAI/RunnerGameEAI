@@ -19,7 +19,7 @@ namespace Player
         }
         void FixedUpdate()
         {
-           _horizontalMover.Active(_playerInput.GetInput(),HorizontalSpeed,BoundX);
+           _horizontalMover.Active(_playerInput.GetInput(), HorizontalSpeed ,BoundX);
            _verticalMover.Active(VerticalSpeed);
         }
     }

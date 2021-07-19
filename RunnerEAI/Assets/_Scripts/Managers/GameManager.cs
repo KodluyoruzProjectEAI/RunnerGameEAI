@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public static State GameState;
-
-    public static State currentState{ get { return GameState; } }
+    public static event System.Action OnDead;
+    public static State currentState{ get; private set; }
     public enum State
     {
         Walking,
@@ -14,9 +13,22 @@ public class GameManager : Singleton<GameManager>
     }
     void Awake()
     {
-        StartSingleton(this);    
+        StartSingleton(this);
+        SetState("Walking");
     }
+    void Update()
+    {
+        Debug.Log(currentState);
+        switch (currentState) 
+        {
+            case State.Walking:
+                break;
 
+            case State.Dead:
+                OnDead?.Invoke();
+                break;
+        }
+    }
     public static State GetState(string get)
     {
         switch (get)
@@ -36,10 +48,10 @@ public class GameManager : Singleton<GameManager>
         switch (set)
         {
             case "Walking":
-                GameState = State.Walking;
+                currentState= State.Walking;
                 break;
             case "Dead":
-                GameState = State.Dead;
+                currentState= State.Dead;
                 break;
         }
     }
