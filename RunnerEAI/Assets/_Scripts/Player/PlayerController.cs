@@ -11,15 +11,20 @@ namespace Player
         VerticalMover _verticalMover;
         PlayerInput _playerInput;
 
+        float inputHorValue;
         void Awake()
         {
             _horizontalMover = new HorizontalMover(this);
             _verticalMover = new VerticalMover(this);
             _playerInput = new PlayerInput();
         }
+        void Update()
+        {
+            inputHorValue = _playerInput.GetInput();
+        }
         void FixedUpdate()
         {
-           _horizontalMover.Active(_playerInput.GetInput(), HorizontalSpeed ,BoundX);
+           _horizontalMover.Active(inputHorValue, HorizontalSpeed ,BoundX);
            _verticalMover.Active(VerticalSpeed);
         }
     }

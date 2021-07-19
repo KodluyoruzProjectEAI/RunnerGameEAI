@@ -2,57 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : Singleton<GameManager>
+namespace Managers 
 {
-    public static event System.Action OnDead;
-    public static State currentState{ get; private set; }
-    public enum State
+    public class GameManager : Singleton<GameManager>
     {
-        Walking,
-        Dead
-    }
-    void Awake()
-    {
-        StartSingleton(this);
-        SetState("Walking");
-    }
-    void Update()
-    {
-        Debug.Log(currentState);
-        switch (currentState) 
+        public static event System.Action OnDead;
+        public static State currentState { get; private set; }
+        public enum State
         {
-            case State.Walking:
-                break;
+            Walking,
+            Dead
+        }
+        void Awake()
+        {
+            StartSingleton(this);
+            SetState("Walking");
+        }
+        void Update()
+        {
+            Debug.Log(currentState);
+            switch (currentState)
+            {
+                case State.Walking:
+                    break;
 
-            case State.Dead:
-                OnDead?.Invoke();
-                break;
+                case State.Dead:
+                    OnDead?.Invoke();
+                    break;
+            }
         }
-    }
-    public static State GetState(string get)
-    {
-        switch (get)
+        public static State GetState(string get)
         {
-            case "Walking":
-                return State.Walking;
-         
-            case "Dead":
-                return State.Dead;
-            
-            default:
-                return State.Walking;
+            switch (get)
+            {
+                case "Walking":
+                    return State.Walking;
+
+                case "Dead":
+                    return State.Dead;
+
+                default:
+                    return State.Walking;
+            }
         }
-    }
-    public static void SetState(string set)
-    {
-        switch (set)
+        public static void SetState(string set)
         {
-            case "Walking":
-                currentState= State.Walking;
-                break;
-            case "Dead":
-                currentState= State.Dead;
-                break;
+            switch (set)
+            {
+                case "Walking":
+                    currentState = State.Walking;
+                    break;
+                case "Dead":
+                    currentState = State.Dead;
+                    break;
+            }
         }
     }
+
 }

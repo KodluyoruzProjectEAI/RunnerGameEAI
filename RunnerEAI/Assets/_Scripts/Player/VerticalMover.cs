@@ -13,6 +13,10 @@ namespace Player
         }
         public void Active(float verticalSpeed)
         {
+            if (verticalSpeed == 0)
+            {
+                return;
+            }
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, verticalSpeed);
         }
     }
