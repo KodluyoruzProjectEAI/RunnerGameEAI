@@ -20,6 +20,12 @@ namespace Player
             rb.velocity = new Vector3(horizontalSpeed * inputHorValue, 0, verticalSpeed);    
             //DENEME 1,2,3
         }
+        public void Move()
+        {
+
+        }
+        
     }
+    
 
 }
