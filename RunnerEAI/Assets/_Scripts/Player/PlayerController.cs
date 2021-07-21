@@ -10,8 +10,14 @@ namespace Player
         HorizontalMover _horizontalMover;
         VerticalMover _verticalMover;
         PlayerInput _playerInput;
-
+        public static bool fall;
+        Vector3 Direction;
         float inputHorValue;
+        private void Start()
+        {
+            Direction = Vector3.forward;
+            fall = false;
+        }
         void Awake()
         {
             _horizontalMover = new HorizontalMover(this);
