@@ -6,7 +6,8 @@ namespace Player
 { 
     public class PlayerData : MonoBehaviour
     {
-        [field: SerializeField]
+        [field:Header("PlayerOzellikler")]
+        [field:SerializeField]
         public float HorizontalSpeed { get; set; }
         
         [field: SerializeField] 
@@ -14,11 +15,14 @@ namespace Player
 
         [field: SerializeField]
         public float JumpPower { get; set; }
-
-        [field: SerializeField]
-        public bool IsJump { get; set; }
+        
+        
+        [field: Header("Diger")]
 
         [SerializeField] protected float BoundX;
+        
+        [field: SerializeField]
+        public bool IsJump { get; set; }
         public bool IsHorizontal { get; protected set; }
         
     }

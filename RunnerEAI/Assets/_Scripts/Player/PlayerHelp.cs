@@ -13,17 +13,15 @@ namespace Help
             _horSpeed = horspeed;
             _verSpeed = verspeed;
             _jumpPower = jumppower;
-          
-
         }
         public static void ResetPlayerValues(this PlayerController player)
         {
             player.HorizontalSpeed = _horSpeed;
             player.VerticalSpeed = _verSpeed;
             player.JumpPower = _jumpPower;
+
             player.transform.position = Vector3.zero;
         }
-
 
     }
 }
