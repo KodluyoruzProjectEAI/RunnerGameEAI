@@ -27,7 +27,7 @@ namespace Player
         }
         void OnDisable()
         {
-            GameManager.OnResetGame += PlayerReset;
+            GameManager.OnResetGame -= PlayerReset;
             GameManager.OnDead -= PlayerDead;
         }
         void Awake()
