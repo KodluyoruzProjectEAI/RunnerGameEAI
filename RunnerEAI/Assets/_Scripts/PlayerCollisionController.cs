@@ -8,13 +8,11 @@ namespace PlayerCollision
 {
     public class PlayerCollisionController : MonoBehaviour
     {
-
-        private void OnCollisionEnter(Collision collision)
+        void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.tag == "_obstacle")
+            if (collision.collider.CompareTag("_obstacle"))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                Debug.Log("kontrol");
+                Debug.Log("Çarptý");
             }
         }
     }
