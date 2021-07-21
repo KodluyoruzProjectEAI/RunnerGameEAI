@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Player;
 public class Camera : MonoBehaviour
 {
      // private PlayerController _playerController;
@@ -13,36 +13,44 @@ public class Camera : MonoBehaviour
      private Vector3 startingPosOffset;
      private Vector3 finishPos;
      Vector3 velocity; //SmoothDamp requires ref velocity
-
-     private void Start()
+     public Transform PlayerLocation;
+     Vector3 Distance;
+    
+    private void Start()
      {
           firstPos = transform.position;//should this be in the awake instead to make sure we get the first pos ?
           //playerPos = FindObjectOfType<PlayerController>().GetComponent(transform);
           // playerPos = _playerController.transform.position;
           velocity = Vector3.one;
+          Distance = transform.position - PlayerLocation.position;
      }
+    
 
      private void Update()
      {
-          /*switch (State)
-          {
-               case GameState.1:
-                         
-                    StartPos();
-                    break;
-               case GameState.2:
-                         
-                    FollowPlayer();
-                    break;
-               case GameState.3:
-                    
-                    CrashedCamEffect();
-                    break;
-               case GameState.4:
-                    
-                    FinishCam();
-                    break;
-          }*/
+        /*switch (State)
+        {
+             case GameState.1:
+
+                  StartPos();
+                  break;
+             case GameState.2:
+
+                  FollowPlayer();
+                  break;
+             case GameState.3:
+
+                  CrashedCamEffect();
+                  break;
+             case GameState.4:
+
+                  FinishCam();
+                  break;
+        }*/
+        if (PlayerController.fall== false)
+        {
+            transform.position = Distance + PlayerLocation.position;
+        }
      }
 
      // State ler ile geçiş yaparız, Sırf Camera için enum state oluşturulabilir
