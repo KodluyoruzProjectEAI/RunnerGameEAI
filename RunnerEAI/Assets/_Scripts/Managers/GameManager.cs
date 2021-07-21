@@ -6,7 +6,10 @@ namespace Managers
 {
     public class GameManager : Singleton<GameManager>
     {
+        public static event System.Action OnResetGame;
+        public static event System.Action OnWalking;
         public static event System.Action OnDead;
+       
         public static State currentState { get; private set; }
         public enum State
         {
@@ -23,6 +26,7 @@ namespace Managers
             switch (currentState)
             {
                 case State.Walking:
+                    OnWalking?.Invoke();
                     break;
 
                 case State.Dead:
@@ -55,6 +59,10 @@ namespace Managers
                     currentState = State.Dead;
                     break;
             }
+        }
+        public void ResetGame()
+        {
+            OnResetGame?.Invoke();
         }
     }
 
