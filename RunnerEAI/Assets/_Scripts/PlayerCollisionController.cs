@@ -1,3 +1,4 @@
+using Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace PlayerCollision
         {
             if (collision.collider.CompareTag("_obstacle"))
             {
+                GameManager.SetState("Dead");
                 Debug.Log("Çarptý");
             }
         }

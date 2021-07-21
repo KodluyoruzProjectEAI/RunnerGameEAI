@@ -62,6 +62,7 @@ namespace Managers
         }
         public void ResetGame()
         {
+            SetState("Walking");
             OnResetGame?.Invoke();
         }
     }

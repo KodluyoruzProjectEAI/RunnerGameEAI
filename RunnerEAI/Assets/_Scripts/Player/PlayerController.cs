@@ -32,6 +32,7 @@ namespace Player
         }
         void Awake()
         {
+            _playerController = GetComponent<PlayerController>();
             _horizontalMover = new HorizontalMover(this);
             _verticalMover = new VerticalMover(this);
             _jump = new Jump(this);
