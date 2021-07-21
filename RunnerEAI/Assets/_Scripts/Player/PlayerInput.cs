@@ -6,7 +6,7 @@ namespace Player
 {
     public class PlayerInput
     {
-        public int GetInput()
+        public int GetMoveInput()
         {
             if (Input.touchCount > 0)
             {
