@@ -22,11 +22,13 @@ namespace Player
 
         void OnEnable()
         {
+            LevelManager.OnNextLevel += PlayerReset;
             GameManager.OnResetGame += PlayerReset;
             GameManager.OnDead += PlayerDead;
         }
         void OnDisable()
         {
+            LevelManager.OnNextLevel -= PlayerReset;
             GameManager.OnResetGame -= PlayerReset;
             GameManager.OnDead -= PlayerDead;
         }
