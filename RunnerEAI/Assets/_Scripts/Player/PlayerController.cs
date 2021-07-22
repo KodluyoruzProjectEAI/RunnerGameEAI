@@ -32,15 +32,18 @@ namespace Player
         }
         void Awake()
         {
+            rb = GetComponent<Rigidbody>();
+            _playerController = GetComponent<PlayerController>();
+
             _horizontalMover = new HorizontalMover(this);
             _verticalMover = new VerticalMover(this);
             _jump = new Jump(this);
             _playerInput = new PlayerInput();
-            rb = GetComponent<Rigidbody>();
+          
         }
         void Start()
         {
-            _playerController.SavePlayerValues(HorizontalSpeed, VerticalSpeed, JumpPower);
+            _playerController.SavePlayerValues(HorizontalSpeed, VerticalSpeed ,JumpPower);
             Direction = Vector3.forward;
             fall = false;
         }
