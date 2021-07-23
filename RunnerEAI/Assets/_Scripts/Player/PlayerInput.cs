@@ -6,21 +6,41 @@ namespace Player
 {
     public class PlayerInput
     {
+        private Vector2 startPos;
+        private Vector2 direction;
+        private int inputInt;
         public int GetMoveInput()
         {
             if (Input.touchCount > 0)
             {
-                if(Input.GetTouch(0).position.x < Screen.width / 2)
+                Touch _touch = Input.GetTouch(0);
+
+                switch (_touch.phase)
                 {
-                    return -1;
+                    case TouchPhase.Began:
+                        startPos = _touch.position;
+                        break;
+                    case TouchPhase.Moved:
+                        direction = _touch.position - startPos;
+                        if (direction.x > 0)
+                        {
+                            inputInt = 1;
+                            // vector3 eklemesi yap ve playerın x pozisyonunu bir **SAĞ**lane e geçecek kadar değiştir
+                        }
+                        else
+                        {
+                            inputInt = -1;
+                            // vector3 eklemesi yap ve playerın x pozisyonunu bir **SOL** lane e geçecek kadar değiştir
+                        }
+                        break;
+                    case TouchPhase.Ended:
+                        inputInt = 0;
+                        break;
                 }
-                else
-                {
-                    return 1;
-                }
+                
             }
-            return 0;
+
+            return inputInt;
         }
     }
-
 }
