@@ -26,13 +26,13 @@ namespace Animation
         }
         void RunAnim()
         {
-            anim.SetTrigger("IsRunning");
+            anim.SetTrigger("IsRun");
             anim.ResetTrigger("IsJump");
         }
         void JumpAnim()
         {
             anim.SetTrigger("IsJump");
-            anim.ResetTrigger("IsRunning");
+            anim.ResetTrigger("IsRun");
         }
 
     }
