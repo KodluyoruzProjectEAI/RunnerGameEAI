@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 using Player;
 public class Camera : MonoBehaviour
@@ -13,45 +14,60 @@ public class Camera : MonoBehaviour
      private Vector3 startingPos; // this is the position reference of the cam while we are in the game and running
      private Vector3 startingPosOffset;
      private Vector3 finishPos;
+
+     private Vector3 firstRot;
+     private Vector3 startRot;
+     
      Vector3 velocity; //SmoothDamp requires ref velocity
      public Transform PlayerLocation;
      Vector3 Distance;
-    
-    private void Start()
+     
+
+     private void Awake()
      {
-          firstPos = transform.position;//should this be in the awake instead to make sure we get the first pos ?
+          firstPos = new Vector3(4.5f,9f,-9f);
+          firstRot = new Vector3(23.8f, -16.7f, -2.5f); //23.8,-16.7,-2.5
+
+          startRot = new Vector3(-6.6f, 3.7f, 0);
+     }
+
+     private void Start()
+     {
+          transform.position = firstPos;
+          transform.eulerAngles = firstRot;
           //playerPos = FindObjectOfType<PlayerController>().GetComponent(transform);
           // playerPos = _playerController.transform.position;
           velocity = Vector3.one;
           Distance = transform.position - PlayerLocation.position;
+          startingPos = Distance + PlayerLocation.position;
      }
     
 
      private void Update()
      {
-        /*switch (State)
+        switch (GameManager.currentState)
         {
-             case GameState.1:
-
-                  StartPos();
+             case GameManager.State.Start:
+                  
+                  //StartPos();
                   break;
-             case GameState.2:
-
-                  FollowPlayer();
+             case GameManager.State.Running:
+                  GameManager.OnRunning += StartPos;
+                  //FollowPlayer();
                   break;
-             case GameState.3:
+             // case GameState.3:
+             //
+             //      CrashedCamEffect();
+             //      break;
+             case GameManager.State.Dead:
 
-                  CrashedCamEffect();
+                  //FinishCam();
                   break;
-             case GameState.4:
-
-                  FinishCam();
-                  break;
-        }*/
-        if (PlayerController.fall== false)
-        {
-            transform.position = Distance + PlayerLocation.position;
         }
+        // if (PlayerController.fall== false)
+        // {
+        //     transform.position = Distance + PlayerLocation.position;
+        // }
      }
 
      // State ler ile geçiş yaparız, Sırf Camera için enum state oluşturulabilir
@@ -59,7 +75,9 @@ public class Camera : MonoBehaviour
      //Start Effect
      void StartPos()
      {
-          transform.position = Vector3.SmoothDamp(firstPos, startingPos-startingPosOffset, ref velocity, 0.2f);
+          transform.position = Vector3.SmoothDamp(firstPos, Distance + PlayerLocation.position, ref velocity, 0.2f);
+          transform.eulerAngles = Vector3.SmoothDamp(firstRot, startRot, ref velocity, 0.2f);
+
      }
           
      //Main Follow

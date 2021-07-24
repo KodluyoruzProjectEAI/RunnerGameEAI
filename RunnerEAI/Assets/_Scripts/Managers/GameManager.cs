@@ -6,28 +6,35 @@ namespace Managers
 {
     public class GameManager : Singleton<GameManager>
     {
+        public static event System.Action OnStart;
         public static event System.Action OnResetGame;
-        public static event System.Action OnWalking;
+        public static event System.Action OnRunning;
         public static event System.Action OnDead;
         public static event System.Action OnWin;
        
         public static State currentState { get; private set; }
         public enum State
         {
-            Walking,
+            Start,
+            Running,
             Dead
         }
         void Awake()
         {
             StartSingleton(this);
-            SetState("Walking");
+            SetState("Start");
         }
         void Update()
         {
             switch (currentState)
             {
-                case State.Walking:
-                    OnWalking?.Invoke();
+                
+                case State.Start:
+                    OnStart?.Invoke();
+                    break;
+                
+                case State.Running:
+                    OnRunning?.Invoke();
                     break;
 
                 case State.Dead:
@@ -39,22 +46,29 @@ namespace Managers
         {
             switch (get)
             {
+                case "Start":
+                    return State.Start;
+                
                 case "Walking":
-                    return State.Walking;
+                    return State.Running;
 
                 case "Dead":
                     return State.Dead;
 
                 default:
-                    return State.Walking;
+                    return State.Running;
             }
         }
         public static void SetState(string set)
         {
             switch (set)
             {
+                case "Start":
+                    currentState = State.Start;
+                    break;
+                
                 case "Walking":
-                    currentState = State.Walking;
+                    currentState = State.Running;
                     break;
 
                 case "Dead":
@@ -64,7 +78,7 @@ namespace Managers
         }
         public void ResetGame()
         {
-            SetState("Walking");
+            SetState("Running");
             OnResetGame?.Invoke();
         }
     }

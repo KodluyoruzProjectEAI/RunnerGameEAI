@@ -8,6 +8,7 @@ namespace Managers
     {
         [SerializeField] GameObject LoseMenu;
      //   [SerializeField] GameObject WinMenu;
+        [SerializeField] GameObject TapToPlay_PANEL;
         void Start()
         {
             GameManager.OnDead += EnableLoseMenu;
@@ -29,6 +30,12 @@ namespace Managers
         void DisableLoseMenu()
         {
             LoseMenu.SetActive(false);
+        }
+
+        public void TapToPlay()
+        {
+            GameManager.SetState("Running");
+            TapToPlay_PANEL.SetActive(false);
         }
     }
 }

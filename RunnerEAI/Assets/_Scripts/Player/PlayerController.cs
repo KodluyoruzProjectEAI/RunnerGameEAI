@@ -27,12 +27,14 @@ namespace Player
             LevelManager.OnNextLevel += PlayerReset;
             GameManager.OnResetGame += PlayerReset;
             GameManager.OnDead += PlayerDead;
+            GameManager.OnRunning += SubscribeVerticalActive;
         }
         void OnDisable()
         {
             LevelManager.OnNextLevel -= PlayerReset;
             GameManager.OnResetGame -= PlayerReset;
             GameManager.OnDead -= PlayerDead;
+            GameManager.OnRunning -= SubscribeVerticalActive;
         }
         void Awake()
         {
@@ -77,7 +79,7 @@ namespace Player
             {
                 _horizontalMover.Active(inputHorValue, HorizontalSpeed, BoundX);
             }
-            _verticalMover.Active(VerticalSpeed);
+            //_verticalMover.Active(VerticalSpeed);
         }
         void PlayerDead()
         {
@@ -88,6 +90,11 @@ namespace Player
         void PlayerReset()
         {
             _playerController.ResetPlayerValues();
+        }
+
+        void SubscribeVerticalActive()
+        {
+            _verticalMover.Active(VerticalSpeed);
         }
 
     }
