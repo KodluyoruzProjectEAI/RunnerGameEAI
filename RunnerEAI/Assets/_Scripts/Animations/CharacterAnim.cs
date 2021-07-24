@@ -20,12 +20,21 @@ namespace Animation
             PlayerController.OnJump += JumpAnim;
             PlayerController.OnRun += RunAnim;
             GameManager.OnDead += DeadAnim;
+            GameManager.OnStart += IdleAnim;
         }
         void OnDisable()
         {
             PlayerController.OnJump -= JumpAnim;
             PlayerController.OnRun -= RunAnim;
             GameManager.OnDead -= DeadAnim;
+            GameManager.OnStart -= IdleAnim;
+        }
+        void IdleAnim()
+        {
+            anim.SetTrigger("IsIdle");
+            anim.ResetTrigger("IsRun");
+            anim.ResetTrigger("IsJump");
+            anim.ResetTrigger("IsDead");
         }
         void RunAnim()
         {

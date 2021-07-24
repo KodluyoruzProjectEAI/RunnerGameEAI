@@ -1572,24 +1572,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410793830}
   m_CullTransparentMesh: 1
---- !u!1 &1421208589
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1421208590}
-  - component: {fileID: 1421208591}
-  m_Layer: 0
-  m_Name: Obstacle
-  m_TagString: _obstacle
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1421208590
+--- !u!4 &1421208590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6037472853215938280, guid: b9080c9828eb87e45800e0139c35570b, type: 3}
   m_PrefabInstance: {fileID: 6037472851818572518}
