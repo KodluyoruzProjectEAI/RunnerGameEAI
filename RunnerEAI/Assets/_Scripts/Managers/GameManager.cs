@@ -6,11 +6,14 @@ namespace Managers
 {
     public class GameManager : Singleton<GameManager>
     {
+
         public static event System.Action OnIdle;
         public static event System.Action OnStart;
         public static event System.Action OnResetGame;
+        public static event System.Action OnStart;
         public static event System.Action OnRunning;
         public static event System.Action OnDead;
+
         public static event System.Action OnWin;
 
         public static State currentState { get; private set; }
