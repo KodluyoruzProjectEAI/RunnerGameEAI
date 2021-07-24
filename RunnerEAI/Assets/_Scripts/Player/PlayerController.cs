@@ -40,7 +40,7 @@ namespace Player
             _horizontalMover = new HorizontalMover(this);
             _verticalMover = new VerticalMover(this);
             _jump = new Jump(this);
-            _playerInput = new PlayerInput();
+            _playerInput = gameObject.AddComponent<PlayerInput>();//mono ekledim playerinput a
           
         }
         void Start()
