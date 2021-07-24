@@ -1,14 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player 
 {
-    public class PlayerInput
+    public class PlayerInput: MonoBehaviour
     {
+        //TAP to PLAY first screen input
+        
         private Vector2 startPos;
         private Vector2 direction;
         private int inputInt;
+        private int tapCount;
+        private float firstClick;
+        private PlayerController _playerController;
         public int GetMoveInput()
         {
             if (Input.touchCount > 0)
@@ -41,6 +47,31 @@ namespace Player
             }
 
             return inputInt;
+        }
+
+        private void Awake()
+        {
+            _playerController = GetComponent<PlayerController>();
+        }
+        void Update()
+        {
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+            {
+                tapCount += 1;
+                StartCoroutine(Countdown());    
+            }
+       
+            if (tapCount == 2)
+            {    
+                tapCount = 0;
+                StopCoroutine(Countdown());
+                _playerController.IsJump = true;
+            }
+        }
+        private IEnumerator Countdown()
+        {
+            yield return new WaitForSeconds(0.3f);
+            tapCount = 0;
         }
     }
 }
