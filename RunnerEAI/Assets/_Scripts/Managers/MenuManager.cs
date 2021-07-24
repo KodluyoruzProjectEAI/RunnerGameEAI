@@ -34,7 +34,7 @@ namespace Managers
 
         public void TapToPlay()
         {
-            GameManager.SetState("Running");
+            GameManager.SetState("Start");
             TapToPlay_PANEL.SetActive(false);
         }
     }

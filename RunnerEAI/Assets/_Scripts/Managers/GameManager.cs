@@ -6,6 +6,7 @@ namespace Managers
 {
     public class GameManager : Singleton<GameManager>
     {
+        public static event System.Action OnIdle;
         public static event System.Action OnStart;
         public static event System.Action OnResetGame;
         public static event System.Action OnRunning;
@@ -15,6 +16,7 @@ namespace Managers
         public static State currentState { get; private set; }
         public enum State
         {
+            Idle,
             Start,
             Running,
             Dead
@@ -22,12 +24,16 @@ namespace Managers
         void Awake()
         {
             StartSingleton(this);
-            SetState("Start");
+            SetState("Idle");
         }
         void Update()
         {
             switch (currentState)
             {
+                case State.Idle:
+                    OnIdle?.Invoke();
+                    break;
+
                 case State.Start:
                     OnStart?.Invoke();
                     break;
@@ -45,6 +51,8 @@ namespace Managers
         {
             switch (get)
             {
+                case "Idle":
+                    return State.Idle;
 
                 case "Start":
                     return State.Start;
@@ -64,7 +72,10 @@ namespace Managers
         {
             switch (set)
             {
-
+                case "Idle":
+                    currentState = State.Idle;
+                    break;
+                
                 case "Start":
                     currentState = State.Start;
                     break;

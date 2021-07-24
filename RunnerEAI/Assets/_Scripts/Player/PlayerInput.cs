@@ -70,7 +70,7 @@ namespace Player
         }
         private IEnumerator Countdown()
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
             tapCount = 0;
         }
     }
