@@ -81,7 +81,6 @@ namespace Player
             {
                 _horizontalMover.Active(inputHorValue, HorizontalSpeed, BoundX);
             }
-            //_verticalMover.Active(VerticalSpeed);
         }
         void PlayerDead()
         {

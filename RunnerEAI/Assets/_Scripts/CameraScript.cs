@@ -36,12 +36,16 @@ public class CameraScript : MonoBehaviour
         z = targetPlayer.transform.position.z;
     }
      void LateUpdate()
-    {
+   {
+        if (NormalMod)
+        {
+            transform.position = new Vector3(x - distance.x, y - distance.y, z - distance.z);
+        }
         if (transform.position == targetPos)
         {
+            distance = targetPlayer.transform.position - transform.position;
             SmoothMod = false;
             NormalMod = true;
-            distance = targetPlayer.transform.position - transform.position;
             GameManager.SetState("Running");
         }
         if (SmoothMod)
@@ -49,11 +53,7 @@ public class CameraScript : MonoBehaviour
             transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, 0.3f);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRot), 10 * Time.deltaTime);
         }
-        if (NormalMod)
-        {
-            transform.position = new Vector3(x - distance.x, y - distance.y, z - distance.z);
-        }
-    }
+   }
     void StartSmooth()
     {
         SmoothMod = true;
