@@ -94,7 +94,6 @@ namespace Player
         {
             _playerController.ResetPlayerValues();
         }
-
         void SubscribeVerticalActive()
         {
             _verticalMover.Active(VerticalSpeed);

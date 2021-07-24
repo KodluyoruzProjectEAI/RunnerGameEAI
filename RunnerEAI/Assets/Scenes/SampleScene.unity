@@ -1248,7 +1248,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 749bc8bd977545941ba74901643d1aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerLocation: {fileID: 543450652550916712}
+  targetPlayer: {fileID: 543450652550916712}
+  firstPos: {x: 4.5, y: 9, z: -9}
+  firstRot: {x: 23.8, y: -16.7, z: -2.5}
+  targetPos: {x: 0, y: 7, z: -9}
+  targetRot: {x: 20, y: 0, z: 0}
 --- !u!1001 &993673922
 PrefabInstance:
   m_ObjectHideFlags: 0

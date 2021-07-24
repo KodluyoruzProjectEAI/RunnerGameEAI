@@ -6,6 +6,8 @@ namespace Managers
 {
     public class MenuManager : MonoBehaviour
     {
+        public static event System.Action OnCameraSmooth;
+
         [SerializeField] GameObject LoseMenu;
      //   [SerializeField] GameObject WinMenu;
         [SerializeField] GameObject TapToPlay_PANEL;
@@ -34,7 +36,7 @@ namespace Managers
 
         public void TapToPlay()
         {
-            GameManager.SetState("Start");
+            OnCameraSmooth?.Invoke();
             TapToPlay_PANEL.SetActive(false);
         }
     }
