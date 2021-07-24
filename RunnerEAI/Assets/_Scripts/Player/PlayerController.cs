@@ -8,6 +8,8 @@ namespace Player
 {
     public class PlayerController : PlayerData
     {
+        public static event System.Action OnJump;
+        public static event System.Action OnRun;
         PlayerController _playerController;
         HorizontalMover _horizontalMover;
         VerticalMover _verticalMover;
@@ -60,6 +62,7 @@ namespace Player
             else 
             {
                 IsHorizontal = true;
+                OnRun?.Invoke();
             }
         }
         void FixedUpdate()
@@ -67,6 +70,7 @@ namespace Player
             if (IsJump)
             {
                 _jump.Active(JumpPower);
+                OnJump?.Invoke();
                 IsJump = false;
             }
             if (IsHorizontal)

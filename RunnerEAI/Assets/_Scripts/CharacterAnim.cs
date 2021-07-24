@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,35 +7,34 @@ namespace Animation
 {
     public class CharacterAnim : MonoBehaviour
     {
-        private Animator anim;
-        private void Start()
+        Animator anim;
+        PlayerController _playerController;
+        void Awake()
         {
             anim = GetComponent<Animator>();
+            _playerController = GetComponent<PlayerController>();
         }
-        private void Update()
+        void OnEnable()
         {
-            //if (Input.GetMouseButtonDown(0))
-            //{
-            //anim.SetBool("isRunnin", false);
-            //}
-            //else
-            //{
-            //anim.SetBool("isRunning",true);
-            //}
-            //if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-            //{
-            //anim.SetBool("isRunnin",true);
-            //}
-            //else
-            //{
-            //anim.SetBool("isRunnin", false);
-            //}
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                anim.SetTrigger("jump");
-            }
-                
+            PlayerController.OnJump += JumpAnim;
+            PlayerController.OnRun += RunAnim;
         }
+        void OnDisable()
+        {
+            PlayerController.OnJump -= JumpAnim;
+            PlayerController.OnRun -= RunAnim;
+        }
+        void RunAnim()
+        {
+            anim.SetTrigger("IsRunning");
+            anim.ResetTrigger("IsJump");
+        }
+        void JumpAnim()
+        {
+            anim.SetTrigger("IsJump");
+            anim.ResetTrigger("IsRunning");
+        }
+
     }
 }
 
