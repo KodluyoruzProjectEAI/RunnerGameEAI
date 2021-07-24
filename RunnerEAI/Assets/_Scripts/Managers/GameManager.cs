@@ -7,14 +7,13 @@ namespace Managers
     public class GameManager : Singleton<GameManager>
     {
         public static event System.Action OnResetGame;
-        public static event System.Action OnWalking;
         public static event System.Action OnDead;
         public static event System.Action OnWin;
        
         public static State currentState { get; private set; }
         public enum State
         {
-            Walking,
+            Running,
             Dead
         }
         void Awake()
@@ -26,8 +25,7 @@ namespace Managers
         {
             switch (currentState)
             {
-                case State.Walking:
-                    OnWalking?.Invoke();
+                case State.Running:
                     break;
 
                 case State.Dead:
@@ -39,22 +37,22 @@ namespace Managers
         {
             switch (get)
             {
-                case "Walking":
-                    return State.Walking;
+                case "Running":
+                    return State.Running;
 
                 case "Dead":
                     return State.Dead;
 
                 default:
-                    return State.Walking;
+                    return State.Running;
             }
         }
         public static void SetState(string set)
         {
             switch (set)
             {
-                case "Walking":
-                    currentState = State.Walking;
+                case "Running":
+                    currentState = State.Running;
                     break;
 
                 case "Dead":
@@ -64,7 +62,7 @@ namespace Managers
         }
         public void ResetGame()
         {
-            SetState("Walking");
+            SetState("Running");
             OnResetGame?.Invoke();
         }
     }

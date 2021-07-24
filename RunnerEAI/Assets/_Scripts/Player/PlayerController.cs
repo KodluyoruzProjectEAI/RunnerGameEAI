@@ -10,6 +10,7 @@ namespace Player
     {
         public static event System.Action OnJump;
         public static event System.Action OnRun;
+
         PlayerController _playerController;
         HorizontalMover _horizontalMover;
         VerticalMover _verticalMover;
@@ -57,9 +58,10 @@ namespace Player
             inputHorValue = _playerInput.GetMoveInput();
             if (rb.velocity.y != 0)
             {
+                IsJump = false;
                 IsHorizontal = false;
             }
-            else 
+            else
             {
                 IsHorizontal = true;
                 OnRun?.Invoke();
@@ -71,7 +73,6 @@ namespace Player
             {
                 _jump.Active(JumpPower);
                 OnJump?.Invoke();
-                IsJump = false;
             }
             if (IsHorizontal)
             {
@@ -84,6 +85,7 @@ namespace Player
             VerticalSpeed = 0;
             JumpPower = 0;
             HorizontalSpeed = 0;
+            IsJump = false;
         }
         void PlayerReset()
         {
