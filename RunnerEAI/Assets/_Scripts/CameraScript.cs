@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Managers;
 using UnityEngine;
 using Player;
-public class Camera : MonoBehaviour
+public class CameraScript : MonoBehaviour
 {
      //TAP to PLAY first screen camera input, get from the PlayerInput
      // private PlayerController _playerController;
