@@ -1,3 +1,4 @@
+using Managers;
 using Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,21 +19,31 @@ namespace Animation
         {
             PlayerController.OnJump += JumpAnim;
             PlayerController.OnRun += RunAnim;
+            GameManager.OnDead += DeadAnim;
         }
         void OnDisable()
         {
             PlayerController.OnJump -= JumpAnim;
             PlayerController.OnRun -= RunAnim;
+            GameManager.OnDead -= DeadAnim;
         }
         void RunAnim()
         {
             anim.SetTrigger("IsRun");
             anim.ResetTrigger("IsJump");
+            anim.ResetTrigger("IsDead");
         }
         void JumpAnim()
         {
             anim.SetTrigger("IsJump");
             anim.ResetTrigger("IsRun");
+            anim.ResetTrigger("IsDead");
+        }
+        void DeadAnim()
+        {
+            anim.ResetTrigger("IsJump");
+            anim.ResetTrigger("IsRun");
+            anim.SetTrigger("IsDead");
         }
 
     }

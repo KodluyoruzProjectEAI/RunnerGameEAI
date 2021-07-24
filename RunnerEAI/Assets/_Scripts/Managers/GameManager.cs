@@ -9,7 +9,6 @@ namespace Managers
         public static event System.Action OnResetGame;
         public static event System.Action OnDead;
         public static event System.Action OnWin;
-        GameObject _gameObject;
        
         public static State currentState { get; private set; }
         public enum State
@@ -20,7 +19,7 @@ namespace Managers
         void Awake()
         {
             StartSingleton(this);
-            SetState("Walking");
+            SetState("Running");
         }
         void Update()
         {

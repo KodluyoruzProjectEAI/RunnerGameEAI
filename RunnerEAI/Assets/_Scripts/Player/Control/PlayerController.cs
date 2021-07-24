@@ -39,11 +39,12 @@ namespace Player
         {
             rb = GetComponent<Rigidbody>();
             _playerController = GetComponent<PlayerController>();
+            _playerInput = GetComponent<PlayerInput>();
+
 
             _horizontalMover = new HorizontalMover(this);
             _verticalMover = new VerticalMover(this);
             _jump = new Jump(this);
-            _playerInput = gameObject.AddComponent<PlayerInput>();//mono ekledim playerinput a
           
         }
         void Start()
