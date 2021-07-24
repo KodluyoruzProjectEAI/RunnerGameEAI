@@ -8,14 +8,19 @@ namespace Managers
     {
         public static event System.Action OnStart;
         public static event System.Action OnResetGame;
+
         public static event System.Action OnRunning;
+
         public static event System.Action OnDead;
         public static event System.Action OnWin;
+        GameObject _gameObject;
        
         public static State currentState { get; private set; }
         public enum State
         {
+
             Start,
+
             Running,
             Dead
         }
@@ -28,6 +33,7 @@ namespace Managers
         {
             switch (currentState)
             {
+
                 
                 case State.Start:
                     OnStart?.Invoke();
@@ -46,10 +52,14 @@ namespace Managers
         {
             switch (get)
             {
+
                 case "Start":
                     return State.Start;
                 
                 case "Walking":
+
+                case "Running":
+
                     return State.Running;
 
                 case "Dead":
@@ -63,11 +73,15 @@ namespace Managers
         {
             switch (set)
             {
+
                 case "Start":
                     currentState = State.Start;
                     break;
                 
                 case "Walking":
+
+                case "Running":
+
                     currentState = State.Running;
                     break;
 
