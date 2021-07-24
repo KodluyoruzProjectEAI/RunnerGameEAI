@@ -5,6 +5,7 @@ using UnityEngine;
 using Player;
 public class Camera : MonoBehaviour
 {
+     //TAP to PLAY first screen camera input, get from the PlayerInput
      // private PlayerController _playerController;
      
      private Vector3 firstPos; // position of the cam before we press "tap to play"
