@@ -11,17 +11,18 @@ namespace Managers
         public static event System.Action OnResetGame;
 
         [SerializeField] GameObject LoseMenu;
-       //   [SerializeField] GameObject WinMenu;
+        [SerializeField] GameObject WinMenu;
         [SerializeField] GameObject TapToPlay_PANEL;
         void Start()
         {
             GameManager.OnDead += EnableLoseMenu;
             OnResetGame += DisableLoseMenu;
-       //     GameManager.OnResetGame += DisableWinMenu;
+            GameManager.OnWin += EnableWinMenu;
+            //OnResetGame += DisableWinMenu;
         }
         void EnableWinMenu()
         {
-           
+           WinMenu.SetActive(true);
         }
         void EnableLoseMenu()
         {
@@ -29,7 +30,7 @@ namespace Managers
         }
         void DisableWinMenu()
         {
-
+            WinMenu.SetActive(false);
         }
         void DisableLoseMenu()
         {

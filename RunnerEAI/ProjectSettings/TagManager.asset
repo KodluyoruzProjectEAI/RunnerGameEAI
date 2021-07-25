@@ -6,6 +6,7 @@ TagManager:
   tags:
   - _obstacle
   - Floor
+  - _finishLine
   layers:
   - Default
   - TransparentFX
