@@ -51,7 +51,7 @@ namespace Player
         }
         void Update()
         {
-            #region Deneme Amaçlı
+            #region Deneme AmaÃ§lÃ½
             if (GameManager.currentState == GameManager.GetState("Start")) { return; }
             if(GameManager.currentState == GameManager.GetState("Dead")) { return; }
             if (IsSuperRun) { GameManager.SetState("SuperRunning"); }
