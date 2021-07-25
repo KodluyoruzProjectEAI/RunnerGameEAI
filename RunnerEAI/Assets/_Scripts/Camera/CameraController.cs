@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraController : CameraData
 {
-    CameraIdle _cameraIdle;
+    CameraProcess _cameraIdle;
     public CameraStates state;
     public enum CameraStates
     {
@@ -20,7 +20,7 @@ public class CameraController : CameraData
     }
     void Awake()
     {
-        _cameraIdle = new CameraIdle(this);
+        _cameraIdle = new CameraProcess(this);
     }
     void Start()
     {

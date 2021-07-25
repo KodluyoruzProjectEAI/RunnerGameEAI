@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using Managers;
 using UnityEngine;
 using Player;
-public class CameraIdle : MonoBehaviour
+public class CameraProcess : MonoBehaviour
 {
     CameraController _cameraController;
     Vector3 velocity;
-    public CameraIdle(CameraController cameraController)
+    public CameraProcess(CameraController cameraController)
     {
         _cameraController = cameraController;
         velocity = Vector3.zero;
