@@ -7,8 +7,9 @@ namespace Managers
     public class GameManager : Singleton<GameManager>
     {
         public static event System.Action OnStart;
-        public static event System.Action OnResetGame;
         public static event System.Action OnRunning;
+        public static event System.Action OnSuperRunning;
+
         public static event System.Action OnDead;
         public static event System.Action OnWin;
 
@@ -17,6 +18,7 @@ namespace Managers
         {
             Start,
             Running,
+            SuperRunning,
             Dead
         }
         void Awake()
@@ -34,6 +36,9 @@ namespace Managers
                 case State.Running:
                     OnRunning?.Invoke();
                     break;
+                case State.SuperRunning:
+                    OnSuperRunning?.Invoke();
+                    break;
                 case State.Dead:
                     OnDead?.Invoke();
                     break;
@@ -48,6 +53,9 @@ namespace Managers
                 
                 case "Running":
                     return State.Running;
+
+                case "SuperRunning":
+                    return State.SuperRunning;
 
                 case "Dead":
                     return State.Dead;
@@ -68,15 +76,14 @@ namespace Managers
                     currentState = State.Running;
                     break;
 
+                case "SuperRunning":
+                    currentState = State.SuperRunning;
+                    break;
+
                 case "Dead":
                     currentState = State.Dead;
                     break;
             }
-        }
-        public void ResetGame()
-        {
-            SetState("Running");
-            OnResetGame?.Invoke();
         }
     }
 

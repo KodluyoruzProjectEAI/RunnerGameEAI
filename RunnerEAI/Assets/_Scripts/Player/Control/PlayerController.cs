@@ -18,24 +18,22 @@ namespace Player
         Jump _jump;
         Rigidbody rb;
 
-        public static bool fall;
-        Vector3 Direction;
-
         float inputHorValue;
-
         void OnEnable()
         {
             LevelManager.OnNextLevel += PlayerReset;
-            GameManager.OnResetGame += PlayerReset;
+            MenuManager.OnResetGame += PlayerReset;
             GameManager.OnDead += PlayerDead;
-            GameManager.OnRunning += SubscribeVerticalActive;
+            GameManager.OnRunning += PlayerRunActive;
+            GameManager.OnSuperRunning += PlayerSuperRunActive;
         }
         void OnDisable()
         {
             LevelManager.OnNextLevel -= PlayerReset;
-            GameManager.OnResetGame -= PlayerReset;
+            MenuManager.OnResetGame -= PlayerReset;
             GameManager.OnDead -= PlayerDead;
-            GameManager.OnRunning -= SubscribeVerticalActive;
+            GameManager.OnRunning -= PlayerRunActive;
+            GameManager.OnSuperRunning -= PlayerSuperRunActive;
         }
         void Awake()
         {
@@ -43,32 +41,32 @@ namespace Player
             _playerController = GetComponent<PlayerController>();
             _playerInput = GetComponent<PlayerInput>();
 
-
             _horizontalMover = new HorizontalMover(this);
             _verticalMover = new VerticalMover(this);
             _jump = new Jump(this);
-          
         }
         void Start()
         {
             _playerController.SavePlayerValues(HorizontalSpeed, VerticalSpeed ,JumpPower);
-            Direction = Vector3.forward;
-            fall = false;
         }
-     
         void Update()
-        {  
-            inputHorValue = _playerInput.GetMoveInput();
+        {
+            #region Deneme Amaçlý
+            if (GameManager.currentState == GameManager.GetState("Start")) { return; }
+            if(GameManager.currentState == GameManager.GetState("Dead")) { return; }
+            if (IsSuperRun) { GameManager.SetState("SuperRunning"); }
+            else { GameManager.SetState("Running"); }
+            #endregion
             if (rb.velocity.y != 0)
             {
                 IsJump = false;
                 IsHorizontal = false;
+                return;
             }
-            else
-            {
-                IsHorizontal = true;
-                OnRun?.Invoke();
-            }
+            inputHorValue = _playerInput.GetMoveInput();
+            IsHorizontal = true;
+            OnRun?.Invoke();
+            
         }
         void FixedUpdate()
         {
@@ -82,6 +80,18 @@ namespace Player
                 _horizontalMover.Active(inputHorValue, HorizontalSpeed, BoundX);
             }
         }
+        void PlayerRunActive()
+        {
+            _verticalMover.Active(VerticalSpeed);
+        }
+        void PlayerSuperRunActive()
+        {
+            _verticalMover.Active(SuperRunSpeed);
+        }
+        void PlayerReset()
+        {
+            _playerController.ResetPlayerValues();
+        }
         void PlayerDead()
         {
             VerticalSpeed = 0;
@@ -89,15 +99,6 @@ namespace Player
             HorizontalSpeed = 0;
             IsJump = false;
         }
-        void PlayerReset()
-        {
-            _playerController.ResetPlayerValues();
-        }
-        void SubscribeVerticalActive()
-        {
-            _verticalMover.Active(VerticalSpeed);
-        }
-
     }
 
 }
