@@ -77,7 +77,11 @@ namespace Player
                 _horizontalMover.Active(inputHorValue, HorizontalSpeed, BoundX);
             }
         }
-        void PlayerDead()
+        void PlayerRunActive()
+        {
+            _verticalMover.Active(VerticalSpeed);
+        }
+        void PlayerSuperRunActive()
         {
             _verticalMover.Active(SuperRunSpeed);
         }
