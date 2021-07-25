@@ -1,6 +1,7 @@
 using Managers;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,8 @@ namespace slide
     public class SliderController : MonoBehaviour
     {
         public Image coffee;
-
+        private PlayerData _playerData;
+        [SerializeField]
         private float stamina;
         private float maxStamina;
         void OnEnable()
@@ -18,6 +20,7 @@ namespace slide
         }
         void Start()
         {
+            _playerData = FindObjectOfType<PlayerData>();
             stamina = 0;
             maxStamina = 100;
         }
@@ -34,9 +37,10 @@ namespace slide
             {
                 stamina += 25;
             }
-            else if (integer == -1)
+            else if (integer == -1 && stamina == maxStamina)
             {
-                stamina -= 25;
+                stamina -= 100;
+                _playerData.IsSuperRun = true;
             }
         }
         void ResetSlider()
