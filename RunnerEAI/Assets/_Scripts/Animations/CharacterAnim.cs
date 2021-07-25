@@ -39,14 +39,14 @@ namespace Animation
         void RunAnim()
         {
             anim.SetTrigger("IsRun");
+            anim.ResetTrigger("IsSuperRun");
             anim.ResetTrigger("IsJump");
             anim.ResetTrigger("IsDead");
         }
         void SuperRunAnim()
         {
-            ///SuperRUN
-            anim.SetTrigger("IsRun");
-            //anim.ResetTrigger("IsRun");
+            anim.SetTrigger("IsSuperRun");
+            anim.ResetTrigger("IsRun");
             anim.ResetTrigger("IsJump");
             anim.ResetTrigger("IsDead");
         }

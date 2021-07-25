@@ -9,6 +9,7 @@ namespace PlayerCollision
 {
     public class PlayerCollisionController : MonoBehaviour
     {
+        
         void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.CompareTag("_obstacle"))
