@@ -10,6 +10,7 @@ namespace Managers
         public static event System.Action OnRunning;
         public static event System.Action OnSuperRunning;
 
+        public static event System.Action OnJump;
         public static event System.Action OnDead;
         public static event System.Action OnWin;
 
@@ -19,6 +20,7 @@ namespace Managers
             Start,
             Running,
             SuperRunning,
+            Jump,
             Dead,
             Win
         }
@@ -39,6 +41,9 @@ namespace Managers
                     break;
                 case State.SuperRunning:
                     OnSuperRunning?.Invoke();
+                    break;
+                case State.Jump:
+                    OnJump?.Invoke();
                     break;
                 case State.Dead:
                     OnDead?.Invoke();
@@ -61,6 +66,9 @@ namespace Managers
                 case "SuperRunning":
                     return State.SuperRunning;
 
+                case "Jump":
+                    return State.Jump;
+                
                 case "Dead":
                     return State.Dead;
 
@@ -85,6 +93,10 @@ namespace Managers
 
                 case "SuperRunning":
                     currentState = State.SuperRunning;
+                    break;
+
+                case "Jump":
+                    currentState = State.Jump;
                     break;
 
                 case "Dead":

@@ -40,8 +40,15 @@ namespace slide
             else if (integer == -1 && stamina == maxStamina)
             {
                 stamina -= 100;
-                _playerData.IsSuperRun = true;
+                StartCoroutine("StartSuperRunning");
+               
             }
+        }
+        IEnumerator StartSuperRunning()
+        {
+            GameManager.SetState("SuperRunning");
+            yield return new WaitForSeconds(_playerData.SuperRunLifeTime);
+            GameManager.SetState("Running");
         }
         void ResetSlider()
         {

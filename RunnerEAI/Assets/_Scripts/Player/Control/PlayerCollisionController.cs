@@ -5,17 +5,36 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-namespace PlayerCollision
+namespace Player
 {
     public class PlayerCollisionController : MonoBehaviour
     {
-        
+        PlayerController _playerController;
+        private void Awake()
+        {
+            _playerController = GetComponent<PlayerController>();
+        }
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.collider.CompareTag("_obstacle"))
+            switch (collision.collider.tag)
             {
-                GameManager.SetState("Dead");
-                Debug.Log("Çarptı");
+                case "_obstacle":
+                    GameManager.SetState("Dead");
+                    break;
+
+                case "_finishLine":
+                    GameManager.SetState("Win");
+                    break;
+
+            }
+        }
+        void OnCollisionExit(Collision collision)
+        {
+            switch (collision.collider.tag)
+            {
+                case "Floor":
+                    GameManager.SetState("Running");
+                    break;
             }
         }
     }

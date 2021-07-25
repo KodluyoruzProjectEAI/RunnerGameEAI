@@ -15,21 +15,17 @@ namespace Player
 
         [field: SerializeField]
         public float JumpPower { get; set; }
-        
-        
+
         [field: Header("Diger")]
 
         [SerializeField] protected float BoundX;
-        
-        [field: SerializeField]
-        public bool IsJump { get; set; }
         public bool IsHorizontal { get; protected set; }
-        [field: SerializeField]
-        public bool IsSuperRun{ get; set; }
-
-        [field: Header("Ekstra")]
+   
+        [field: Header("SuperRunSkill")]
         [field: SerializeField]
         public float SuperRunSpeed { get; set; }
+        [field: SerializeField]
+        public float SuperRunLifeTime { get; set; }
 
     }
 }

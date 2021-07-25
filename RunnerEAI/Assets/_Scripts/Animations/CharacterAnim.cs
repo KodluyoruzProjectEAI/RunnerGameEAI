@@ -15,16 +15,16 @@ namespace Animation
         }
         void OnEnable()
         {
-            PlayerController.OnJump += JumpAnim;
-            PlayerController.OnRun += RunAnim;
+            GameManager.OnJump += JumpAnim;
+            GameManager.OnRunning += RunAnim;
             GameManager.OnDead += DeadAnim;
             GameManager.OnStart += IdleAnim;
             GameManager.OnSuperRunning += SuperRunAnim;
         }
         void OnDisable()
         {
-            PlayerController.OnJump -= JumpAnim;
-            PlayerController.OnRun-= RunAnim;
+            GameManager.OnJump -= JumpAnim;
+            GameManager.OnRunning -= RunAnim;
             GameManager.OnDead -= DeadAnim;
             GameManager.OnStart -= IdleAnim;
             GameManager.OnSuperRunning -= SuperRunAnim;
@@ -39,32 +39,34 @@ namespace Animation
         }
         void RunAnim()
         {
-            anim.SetTrigger("IsRun");
             anim.ResetTrigger("IsIdle");
             anim.ResetTrigger("IsSuperRun");
             anim.ResetTrigger("IsJump");
             anim.ResetTrigger("IsDead");
+            anim.SetTrigger("IsRun");
         }
         void SuperRunAnim()
         {
-            anim.SetTrigger("IsSuperRun");
             anim.ResetTrigger("IsRun");
             anim.ResetTrigger("IsJump");
             anim.ResetTrigger("IsSuperRun");
             anim.ResetTrigger("IsDead");
+            anim.SetTrigger("IsSuperRun");
         }
         void JumpAnim()
         {
-            anim.SetTrigger("IsJump");
             anim.ResetTrigger("IsIdle");
             anim.ResetTrigger("IsRun");
             anim.ResetTrigger("IsSuperRun");
             anim.ResetTrigger("IsDead");
+            anim.SetTrigger("IsJump");
         }
         void DeadAnim()
         {
+            anim.ResetTrigger("IsIdle");
             anim.ResetTrigger("IsJump");
             anim.ResetTrigger("IsRun");
+            anim.ResetTrigger("IsSuperRun");
             anim.SetTrigger("IsDead");
         }
 

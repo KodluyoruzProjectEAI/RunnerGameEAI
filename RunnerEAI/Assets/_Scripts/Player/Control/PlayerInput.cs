@@ -1,3 +1,4 @@
+using Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Player
         private int tapCount;
         private float firstClick;
         private PlayerController _playerController;
+        Rigidbody rb;
         public int GetMoveInput()
         {
             if (Input.touchCount > 0)
@@ -52,6 +54,7 @@ namespace Player
         private void Awake()
         {
             _playerController = GetComponent<PlayerController>();
+            rb = _playerController.GetComponent<Rigidbody>();
         }
         void Update()
         {
@@ -65,7 +68,12 @@ namespace Player
             {    
                 tapCount = 0;
                 StopCoroutine(Countdown());
-                _playerController.IsJump = true;
+
+                if (rb.velocity.y == 0 && GameManager.currentState!=GameManager.GetState("Start"))
+                {
+                    GameManager.SetState("Jump");
+                }
+
             }
         }
         private IEnumerator Countdown()

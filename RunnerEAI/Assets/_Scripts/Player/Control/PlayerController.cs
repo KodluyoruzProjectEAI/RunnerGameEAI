@@ -8,16 +8,12 @@ namespace Player
 {
     public class PlayerController : PlayerData
     {
-        public static event System.Action OnJump;
-        public static event System.Action OnRun;
-
         PlayerController _playerController;
         HorizontalMover _horizontalMover;
         VerticalMover _verticalMover;
         PlayerInput _playerInput;
         Jump _jump;
         Rigidbody rb;
-
         float inputHorValue;
         void OnEnable()
         {
@@ -51,27 +47,19 @@ namespace Player
         }
         void Update()
         {
-            if (IsSuperRun)
-            {
-                GameManager.SetState("SuperRunning");
-            }
             if (rb.velocity.y != 0)
             {
-                IsJump = false;
                 IsHorizontal = false;
                 return;
             }
             inputHorValue = _playerInput.GetMoveInput();
             IsHorizontal = true;
-            OnRun?.Invoke();
-            
         }
         void FixedUpdate()
         {
-            if (IsJump)
-            {
+            if (GameManager.currentState == GameManager.GetState("Jump"))
+            {   
                 _jump.Active(JumpPower);
-                OnJump?.Invoke();
             }
             if (IsHorizontal)
             {
@@ -95,7 +83,6 @@ namespace Player
             VerticalSpeed = 0;
             JumpPower = 0;
             HorizontalSpeed = 0;
-            IsJump = false;
         }
     }
 
