@@ -20,7 +20,7 @@ public class CameraProcess : MonoBehaviour
     }
     public void InGameMOD(Vector3 distance,Vector3 targetPosition)
     {
-        _cameraController.transform.position = new Vector3(targetPosition.x - distance.x, targetPosition.y - distance.y, targetPosition.z-9f);
+        _cameraController.transform.position = new Vector3(0, targetPosition.y - distance.y, targetPosition.z-9f);
     }
     public void EndMOD()
     {

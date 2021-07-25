@@ -59,7 +59,6 @@ namespace Player
             {
                 IsJump = false;
                 IsHorizontal = false;
-                return;
             }
             inputHorValue = _playerInput.GetMoveInput();
             IsHorizontal = true;
@@ -78,11 +77,7 @@ namespace Player
                 _horizontalMover.Active(inputHorValue, HorizontalSpeed, BoundX);
             }
         }
-        void PlayerRunActive()
-        {
-            _verticalMover.Active(VerticalSpeed);
-        }
-        void PlayerSuperRunActive()
+        void PlayerDead()
         {
             _verticalMover.Active(SuperRunSpeed);
         }

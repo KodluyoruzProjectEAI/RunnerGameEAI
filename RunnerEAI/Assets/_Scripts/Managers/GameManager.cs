@@ -96,6 +96,11 @@ namespace Managers
                     break;
             }
         }
+        public void completeLevel()
+        {
+            Debug.Log("Level Complete");
+        }
+      
     }
 
 }
