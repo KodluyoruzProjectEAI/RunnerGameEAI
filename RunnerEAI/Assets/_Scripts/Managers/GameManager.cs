@@ -19,7 +19,8 @@ namespace Managers
             Start,
             Running,
             SuperRunning,
-            Dead
+            Dead,
+            Win
         }
         void Awake()
         {
@@ -42,6 +43,9 @@ namespace Managers
                 case State.Dead:
                     OnDead?.Invoke();
                     break;
+                case State.Win:
+                    OnWin?.Invoke();
+                    break;
             }
         }
         public static State GetState(string get)
@@ -59,6 +63,9 @@ namespace Managers
 
                 case "Dead":
                     return State.Dead;
+
+                case "Win":
+                    return State.Win;
 
                 default:
                     return State.Running;
@@ -82,6 +89,10 @@ namespace Managers
 
                 case "Dead":
                     currentState = State.Dead;
+                    break;
+
+                case "Win":
+                    currentState = State.Win;
                     break;
             }
         }

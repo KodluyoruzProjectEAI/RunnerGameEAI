@@ -2861,6 +2861,10 @@ PrefabInstance:
       propertyPath: smoothness
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6475398113810079616, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
+      propertyPath: <SuperRunSpeed>k__BackingField
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6475398113810079619, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
       propertyPath: m_IsTrigger
       value: 0

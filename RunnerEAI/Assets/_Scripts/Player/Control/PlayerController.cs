@@ -51,12 +51,10 @@ namespace Player
         }
         void Update()
         {
-            #region Deneme Amaçlý
-            if (GameManager.currentState == GameManager.GetState("Start")) { return; }
-            if(GameManager.currentState == GameManager.GetState("Dead")) { return; }
-            if (IsSuperRun) { GameManager.SetState("SuperRunning"); }
-            else { GameManager.SetState("Running"); }
-            #endregion
+            if (IsSuperRun)
+            {
+                GameManager.SetState("SuperRunning");
+            }
             if (rb.velocity.y != 0)
             {
                 IsJump = false;
