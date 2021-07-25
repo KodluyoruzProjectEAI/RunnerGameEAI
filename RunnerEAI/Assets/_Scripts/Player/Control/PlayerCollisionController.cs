@@ -15,7 +15,7 @@ namespace PlayerCollision
             if (collision.collider.CompareTag("_obstacle"))
             {
                 GameManager.SetState("Dead");
-                Debug.Log("Çarptý");
+                Debug.Log("Ã‡arptÄ±");
             }
         }
     }
