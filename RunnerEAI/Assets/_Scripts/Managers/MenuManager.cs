@@ -35,7 +35,6 @@ namespace Managers
         {
             LoseMenu.SetActive(false);
         }
-
         public void ResetGame()
         {
             GameManager.SetState("Running");

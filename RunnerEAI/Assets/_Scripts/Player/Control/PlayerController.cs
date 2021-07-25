@@ -59,6 +59,7 @@ namespace Player
             {
                 IsJump = false;
                 IsHorizontal = false;
+                return;
             }
             inputHorValue = _playerInput.GetMoveInput();
             IsHorizontal = true;
