@@ -8,6 +8,14 @@ namespace Player
 {
     public class PlayerController : PlayerData
     {
+        
+        //[SerializeField] private float minLimit;
+        //[SerializeField] private float maxLimit;
+        //[SerializeField] private float smoothness;
+        //private float startX;
+        //private float lastX;
+        //private float distance;
+        //private float movementValue;
         public static event System.Action OnJump;
         public static event System.Action OnRun;
 
@@ -17,6 +25,8 @@ namespace Player
         PlayerInput _playerInput;
         Jump _jump;
         Rigidbody rb;
+        //GameObject _gameObject;
+        
 
         public static bool fall;
         Vector3 Direction;
@@ -51,13 +61,28 @@ namespace Player
         }
         void Start()
         {
+            
             _playerController.SavePlayerValues(HorizontalSpeed, VerticalSpeed ,JumpPower);
             Direction = Vector3.forward;
             fall = false;
         }
+        
      
         void Update()
-        {  
+        {
+            
+            //if (Input.GetMouseButtonDown(0))
+            //{
+                //startX = Input.mousePosition.x;
+            //}
+            //else if (Input.GetMouseButtonDown(0))
+            //{
+                //lastX = Input.mousePosition.x;
+                //distance = lastX - startX;
+                //movementValue = (distance / Screen.width) * smoothness;
+                //Swipe(movementValue);
+                //startX = lastX;
+            //}
             inputHorValue = _playerInput.GetMoveInput();
             if (rb.velocity.y != 0)
             {
@@ -70,6 +95,11 @@ namespace Player
                 OnRun?.Invoke();
             }
         }
+        //private void Swipe(float movementValue)
+        //{
+            //transform.position = new Vector3(Mathf.Clamp(transform.position.x + movementValue, minLimit, maxLimit), transform.position.y, transform.position.z);
+           
+        //}
         void FixedUpdate()
         {
             if (IsJump)
