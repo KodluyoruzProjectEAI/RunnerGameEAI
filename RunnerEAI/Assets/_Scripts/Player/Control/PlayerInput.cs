@@ -69,7 +69,7 @@ namespace Player
                 tapCount = 0;
                 StopCoroutine(Countdown());
 
-                if (rb.velocity.y == 0 && GameManager.currentState!=GameManager.GetState("Start"))
+                if (rb.velocity.y == 0 && GameManager.currentState!=GameManager.GetState("Start") && GameManager.currentState != GameManager.GetState("Dead"))
                 {
                     GameManager.SetState("Jump");
                 }

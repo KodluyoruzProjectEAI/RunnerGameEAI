@@ -36,11 +36,6 @@ namespace Player
                     GameManager.SetState("Running");
                     break;
             }
-            if (collision.collider.CompareTag("_finishLine"))
-            {
-                GameManager.SetState("Win");
-                Debug.Log("Level Complete");
-            }
         }
     }
 }
