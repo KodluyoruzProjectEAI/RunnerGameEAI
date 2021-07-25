@@ -7,7 +7,6 @@ using Player;
 public class CameraIdle : MonoBehaviour
 {
     CameraController _cameraController;
-    float x, y, z;
     Vector3 velocity;
     public CameraIdle(CameraController cameraController)
     {
