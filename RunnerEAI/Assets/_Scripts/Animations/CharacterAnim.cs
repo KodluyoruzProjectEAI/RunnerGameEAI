@@ -9,11 +9,9 @@ namespace Animation
     public class CharacterAnim : MonoBehaviour
     {
         Animator anim;
-        PlayerController _playerController;
         void Awake()
         {
             anim = GetComponent<Animator>();
-            _playerController = GetComponent<PlayerController>();
         }
         void OnEnable()
         {
@@ -21,6 +19,7 @@ namespace Animation
             PlayerController.OnRun += RunAnim;
             GameManager.OnDead += DeadAnim;
             GameManager.OnStart += IdleAnim;
+            GameManager.OnSuperRunning += SuperRunAnim;
         }
         void OnDisable()
         {
@@ -28,6 +27,7 @@ namespace Animation
             PlayerController.OnRun -= RunAnim;
             GameManager.OnDead -= DeadAnim;
             GameManager.OnStart -= IdleAnim;
+            GameManager.OnSuperRunning -= SuperRunAnim;
         }
         void IdleAnim()
         {
@@ -39,6 +39,14 @@ namespace Animation
         void RunAnim()
         {
             anim.SetTrigger("IsRun");
+            anim.ResetTrigger("IsJump");
+            anim.ResetTrigger("IsDead");
+        }
+        void SuperRunAnim()
+        {
+            ///SuperRUN
+            anim.SetTrigger("IsRun");
+            //anim.ResetTrigger("IsRun");
             anim.ResetTrigger("IsJump");
             anim.ResetTrigger("IsDead");
         }

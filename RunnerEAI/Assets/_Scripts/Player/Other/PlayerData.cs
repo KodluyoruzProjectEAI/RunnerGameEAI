@@ -24,6 +24,12 @@ namespace Player
         [field: SerializeField]
         public bool IsJump { get; set; }
         public bool IsHorizontal { get; protected set; }
-        
+        [field: SerializeField]
+        public bool IsSuperRun{ get; set; }
+
+        [field: Header("Ekstra")]
+        [field: SerializeField]
+        public float SuperRunSpeed { get; set; }
+
     }
 }

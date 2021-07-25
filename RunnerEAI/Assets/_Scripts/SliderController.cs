@@ -1,3 +1,4 @@
+using Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,10 @@ namespace slide
 
         private float stamina;
         private float maxStamina;
-
+        void OnEnable()
+        {
+            MenuManager.OnResetGame += ResetSlider;    
+        }
         void Start()
         {
             stamina = 0;
@@ -34,6 +38,10 @@ namespace slide
             {
                 stamina -= 25;
             }
+        }
+        void ResetSlider()
+        {
+            stamina = 0;
         }
     }
 }
