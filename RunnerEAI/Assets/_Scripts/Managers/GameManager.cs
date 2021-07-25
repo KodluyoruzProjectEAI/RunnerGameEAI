@@ -73,6 +73,10 @@ namespace Managers
                     break;
             }
         }
+        public void completeLevel()
+        {
+            Debug.Log("Level Complete");
+        }
         public void ResetGame()
         {
             SetState("Running");
