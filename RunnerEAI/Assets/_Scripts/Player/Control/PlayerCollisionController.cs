@@ -17,6 +17,11 @@ namespace PlayerCollision
                 GameManager.SetState("Dead");
                 Debug.Log("Çarptı");
             }
+            if (collision.collider.CompareTag("_finishLine"))
+            {
+                GameManager.SetState("Win");
+                Debug.Log("Level Complete");
+            }
         }
     }
 }

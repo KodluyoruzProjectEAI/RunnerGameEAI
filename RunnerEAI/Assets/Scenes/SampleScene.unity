@@ -659,7 +659,7 @@ GameObject:
   - component: {fileID: 329868261}
   m_Layer: 0
   m_Name: finishLine
-  m_TagString: Untagged
+  m_TagString: _finishLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1974,6 +1974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LoseMenu: {fileID: 157219813}
+  WinMenu: {fileID: 425414464}
   TapToPlay_PANEL: {fileID: 1339253006}
 --- !u!1001 &761822669
 PrefabInstance:
