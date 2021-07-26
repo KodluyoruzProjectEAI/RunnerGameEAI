@@ -31,6 +31,7 @@ namespace Managers
         }
         void Update()
         {
+            Debug.Log(currentState);
             switch (currentState)
             {
                 case State.Start:

@@ -18,6 +18,7 @@ namespace Managers
             GameManager.OnDead += EnableLoseMenu;
             OnResetGame += DisableLoseMenu;
             GameManager.OnWin += EnableWinMenu;
+            LevelManager.OnNextLevel += DisableWinMenu;
             //OnResetGame += DisableWinMenu;
         }
         void EnableWinMenu()
