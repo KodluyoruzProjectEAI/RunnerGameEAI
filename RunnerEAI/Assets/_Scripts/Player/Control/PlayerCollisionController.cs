@@ -25,7 +25,6 @@ namespace Player
                 case "_finishLine":
                     GameManager.SetState("Win");
                     break;
-
             }
         }
         void OnCollisionExit(Collision collision)

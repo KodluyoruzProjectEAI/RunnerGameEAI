@@ -8,9 +8,10 @@ using UnityEngine.UI;
 namespace slide
 {
     public class SliderController : MonoBehaviour
-    {
+    {   
         public Image coffee;
-        private PlayerData _playerData;
+        PlayerData _playerData;
+        Rigidbody playerRb;
         [SerializeField]
         private float stamina;
         private float maxStamina;
@@ -22,6 +23,7 @@ namespace slide
         void Start()
         {
             _playerData = FindObjectOfType<PlayerData>();
+            playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
             stamina = 0;
             maxStamina = 100;
         }
@@ -31,7 +33,6 @@ namespace slide
             stamina = Mathf.Clamp(stamina, 0, maxStamina);
             coffee.fillAmount = stamina / maxStamina; // fraction needed because fillAmount is 0 to 1 in value
         }
-
         public void Stamina(int integer)
         {
             if (integer == 1)
@@ -40,10 +41,9 @@ namespace slide
             }
             else if (integer == -1 && stamina == maxStamina)
             {
-                stamina -= 100;
-             
-                if (GameManager.currentState != GameManager.GetState("Dead"))
+                if (GameManager.currentState != GameManager.GetState("Dead") && playerRb.velocity.y==0)
                 {
+                    stamina -= 100;
                     StartCoroutine("StartSuperRunning");
                 }
             }
