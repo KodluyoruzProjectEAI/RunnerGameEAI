@@ -10,15 +10,23 @@ namespace Managers
         public static event System.Action OnCamera;
         public static event System.Action OnResetGame;
 
+        LevelManager _levelManager;
+
         [SerializeField] GameObject LoseMenu;
         [SerializeField] GameObject WinMenu;
         [SerializeField] GameObject TapToPlay_PANEL;
+        [SerializeField] Text DayText;
+        void Awake()
+        {
+            _levelManager = FindObjectOfType<LevelManager>();    
+        }
         void Start()
         {
             GameManager.OnDead += EnableLoseMenu;
             GameManager.OnWin += EnableWinMenu;
             LevelManager.OnNextLevel += DisableWinMenu;
             LevelManager.OnNextLevel += ResetGame;
+            LevelManager.OnNextLevel += EnableTapToPlay;
 
             OnResetGame += DisableLoseMenu;
         }
@@ -38,13 +46,20 @@ namespace Managers
         {
             LoseMenu.SetActive(false);
         }
+        void EnableTapToPlay()
+        {
+            int day = _levelManager.currentLevel + 1;
+            DayText.text = "DAY:" + day;
+            TapToPlay_PANEL.SetActive(true);
+        }
         public void ResetGame()
         {
-            GameManager.SetState("Running");
+            GameManager.SetState("Start");
             OnResetGame?.Invoke();
         }
         public void TapToPlay()
         {
+            
             OnCamera?.Invoke();
             TapToPlay_PANEL.SetActive(false);
         }

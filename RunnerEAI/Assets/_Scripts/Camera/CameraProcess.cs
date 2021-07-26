@@ -13,6 +13,11 @@ public class CameraProcess : MonoBehaviour
         _cameraController = cameraController;
         velocity = Vector3.zero;
     }
+    public void StartMOD(Vector3 firstPos, Vector3 firstRot)
+    {
+        _cameraController.transform.position = firstPos;
+        _cameraController.transform.eulerAngles = firstRot;
+    }
     public void IdleMOD(Vector3 targetPos, Vector3 targetRot)
     {
         _cameraController.transform.position = Vector3.SmoothDamp(_cameraController.transform.position, targetPos, ref velocity, 0.3f);

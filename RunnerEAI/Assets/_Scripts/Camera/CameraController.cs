@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraController : CameraData
 {
-    CameraProcess _cameraIdle;
+    CameraProcess _cameraProcess;
     public CameraStates state;
     public enum CameraStates
     {
@@ -16,16 +16,16 @@ public class CameraController : CameraData
     }
     void OnEnable()
     {
+        LevelManager.OnNextLevel += SetStateStart;
         MenuManager.OnCamera += SetStateIdle;
     }
     void Awake()
     {
-        _cameraIdle = new CameraProcess(this);
+        _cameraProcess = new CameraProcess(this);
     }
     void Start()
     {
-        transform.position = firstPos;
-        transform.eulerAngles = firstRot;
+        SetStateStart();
     }
     void Update()
     {
@@ -39,18 +39,26 @@ public class CameraController : CameraData
     {
         switch (state)
         {
+            case CameraStates.Start:
+                _cameraProcess.StartMOD(firstPos,firstRot);
+            break;
+            
             case CameraStates.Idle:
-                _cameraIdle.IdleMOD(targetPos, targetRot);
+                _cameraProcess.IdleMOD(targetPos, targetRot);
             break;
 
             case CameraStates.InGame:
-                _cameraIdle.InGameMOD(distance,targetPlayer.transform.position);
+                _cameraProcess.InGameMOD(distance,targetPlayer.transform.position);
             break;
 
             case CameraStates.End:
-                _cameraIdle.EndMOD();
-                break;
+                _cameraProcess.EndMOD();
+            break;
         }
+    }
+    void SetStateStart()
+    {
+        state = CameraStates.Start;
     }
     void SetStateIdle()
     {
