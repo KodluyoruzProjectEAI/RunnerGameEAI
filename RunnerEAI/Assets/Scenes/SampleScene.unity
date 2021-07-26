@@ -5881,38 +5881,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6475398113810079616, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
-      propertyPath: maxLimit
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6475398113810079616, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
-      propertyPath: minLimit
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6475398113810079616, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
-      propertyPath: smoothness
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6475398113810079616, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
-      propertyPath: <JumpPower>k__BackingField
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6475398113810079616, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
-      propertyPath: <SuperRunSpeed>k__BackingField
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6475398113810079616, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
-      propertyPath: <HorizontalSpeed>k__BackingField
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6475398113810079616, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
-      propertyPath: <SuperRunLifeTime>k__BackingField
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6475398113810079619, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6798048654182529133, guid: 7b11cd9094c35a746abef91636f26308, type: 3}
       propertyPath: m_RootOrder
       value: 3

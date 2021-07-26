@@ -520,13 +520,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9c29e4e10e17c746be70f2574ffe44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <HorizontalSpeed>k__BackingField: 22
+  <HorizontalSpeed>k__BackingField: 12
   <VerticalSpeed>k__BackingField: 8
   <JumpPower>k__BackingField: 20
   BoundX: 3
-  <IsJump>k__BackingField: 0
-  <IsSuperRun>k__BackingField: 0
-  <SuperRunSpeed>k__BackingField: 0
+  <SuperRunSpeed>k__BackingField: 15
+  <SuperRunLifeTime>k__BackingField: 2
 --- !u!114 &223162622
 MonoBehaviour:
   m_ObjectHideFlags: 0
