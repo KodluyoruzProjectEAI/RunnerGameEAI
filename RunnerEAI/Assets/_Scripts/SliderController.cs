@@ -16,7 +16,8 @@ namespace slide
         private float maxStamina;
         void OnEnable()
         {
-            MenuManager.OnResetGame += ResetSlider;    
+            MenuManager.OnResetGame += ResetSlider;
+            LevelManager.OnNextLevel += ResetSlider;
         }
         void Start()
         {

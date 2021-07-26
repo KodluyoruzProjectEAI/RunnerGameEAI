@@ -12,10 +12,9 @@ namespace _coin
     {
         int i = 1;
         SliderController sliderController;
-        GameManager gameManager;
         PlayerController playerController;
 
-        private void Awake()
+        void Awake()
         {
             sliderController = FindObjectOfType<SliderController>();
         }
@@ -24,10 +23,8 @@ namespace _coin
             playerController = other.GetComponent<PlayerController>();
             if (playerController)
             {
-               
-                Destroy(gameObject);
+                this.gameObject.SetActive(false);
                 sliderController.Stamina(i);
-                               
             }
         }
     }

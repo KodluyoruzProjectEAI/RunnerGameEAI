@@ -14,15 +14,11 @@ namespace Managers
         {
             currentLevel = 0;
             StartSingleton(this);
-            //levelList = new List<GameObject>();
         }
         void OnEnable()
         {
             OnNextLevel += NextLevel;
-        }
-        void OnDisable()
-        {
-            OnNextLevel -= NextLevel;    
+            MenuManager.OnResetGame += RefreshLevel;
         }
         void Start()
         {
@@ -42,8 +38,18 @@ namespace Managers
                 go.SetActive(false);
             }
         }
-        public void NextLevelButton()
+        void RefreshLevel()
         {
+            GameObject targetobject = levelList[currentLevel].transform.Find("Objects").transform.Find("Coins").gameObject;
+            Debug.Log(targetobject);
+            int count = targetobject.transform.childCount;
+            for(int i=0;i<count; i++)
+            {
+                targetobject.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+        public void NextLevelButton()
+        {   
             OnNextLevel?.Invoke();
         }
     }

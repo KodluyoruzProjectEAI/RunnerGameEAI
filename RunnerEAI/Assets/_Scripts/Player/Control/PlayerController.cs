@@ -17,21 +17,21 @@ namespace Player
         float inputHorValue;
         void OnEnable()
         {
+            GameManager.OnRunning += PlayerRunActive;
+            GameManager.OnSuperRunning += PlayerSuperRunActive;
             LevelManager.OnNextLevel += PlayerReset;
             MenuManager.OnResetGame += PlayerReset;
             GameManager.OnDead += PlayerDead;
-            GameManager.OnRunning += PlayerRunActive;
-            GameManager.OnSuperRunning += PlayerSuperRunActive;
             GameManager.OnWin += PlayerDead;
         }
         void OnDisable()
         {
+            GameManager.OnRunning -= PlayerRunActive;
+            GameManager.OnSuperRunning -= PlayerSuperRunActive;
             LevelManager.OnNextLevel -= PlayerReset;
             MenuManager.OnResetGame -= PlayerReset;
             GameManager.OnDead -= PlayerDead;
-            GameManager.OnRunning -= PlayerRunActive;
-            GameManager.OnSuperRunning -= PlayerSuperRunActive;
-            GameManager.OnWin += PlayerDead;
+            GameManager.OnWin -= PlayerDead;
         }
         void Awake()
         {

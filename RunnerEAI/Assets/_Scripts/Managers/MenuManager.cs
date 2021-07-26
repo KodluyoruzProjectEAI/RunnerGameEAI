@@ -16,14 +16,15 @@ namespace Managers
         void Start()
         {
             GameManager.OnDead += EnableLoseMenu;
-            OnResetGame += DisableLoseMenu;
             GameManager.OnWin += EnableWinMenu;
             LevelManager.OnNextLevel += DisableWinMenu;
-            //OnResetGame += DisableWinMenu;
+            LevelManager.OnNextLevel += ResetGame;
+
+            OnResetGame += DisableLoseMenu;
         }
         void EnableWinMenu()
         {
-           WinMenu.SetActive(true);
+            WinMenu.SetActive(true);
         }
         void EnableLoseMenu()
         {
