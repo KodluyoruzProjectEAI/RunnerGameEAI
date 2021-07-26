@@ -22,6 +22,7 @@ namespace Player
             GameManager.OnDead += PlayerDead;
             GameManager.OnRunning += PlayerRunActive;
             GameManager.OnSuperRunning += PlayerSuperRunActive;
+            GameManager.OnWin += PlayerDead;
         }
         void OnDisable()
         {
@@ -30,6 +31,7 @@ namespace Player
             GameManager.OnDead -= PlayerDead;
             GameManager.OnRunning -= PlayerRunActive;
             GameManager.OnSuperRunning -= PlayerSuperRunActive;
+            GameManager.OnWin += PlayerDead;
         }
         void Awake()
         {

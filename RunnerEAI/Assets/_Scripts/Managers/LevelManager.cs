@@ -9,11 +9,12 @@ namespace Managers
         public static event System.Action OnNextLevel;
 
         [SerializeField] List<GameObject> levelList;
-        int currentLevel = 0;
+        int currentLevel ;
         void Awake()
         {
+            currentLevel = 0;
             StartSingleton(this);
-            levelList = new List<GameObject>();
+            //levelList = new List<GameObject>();
         }
         void OnEnable()
         {
