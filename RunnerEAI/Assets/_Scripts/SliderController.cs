@@ -10,11 +10,16 @@ namespace slide
     public class SliderController : MonoBehaviour
     {   
         public Image coffee;
+        public Image completionFill;
+        [SerializeField]
+        private Transform playerTransform;
         PlayerData _playerData;
         Rigidbody playerRb;
         [SerializeField]
         private float stamina;
         private float maxStamina;
+        private float startZ;
+        private float finishZ;
         void OnEnable()
         {
             MenuManager.OnResetGame += ResetSlider;
@@ -26,12 +31,16 @@ namespace slide
             playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
             stamina = 0;
             maxStamina = 100;
+            finishZ = 155f;
         }
 
         void Update()
         {
             stamina = Mathf.Clamp(stamina, 0, maxStamina);
-            coffee.fillAmount = stamina / maxStamina; // fraction needed because fillAmount is 0 to 1 in value
+            coffee.fillAmount = stamina / maxStamina;// fraction needed because fillAmount is 0 to 1 in value
+            
+            startZ = playerTransform.position.z;
+            completionFill.fillAmount = startZ / finishZ;
         }
         public void Stamina(int integer)
         {
