@@ -10,7 +10,6 @@ namespace Player
     public class PlayerCollisionController : MonoBehaviour
     {
         PlayerController _playerController;
-        float time;
         void Awake()
         {
             _playerController = GetComponent<PlayerController>();
@@ -19,6 +18,14 @@ namespace Player
         {
             switch (collision.collider.tag)
             {
+                case "Floor":
+                    
+                    if (GameManager.currentState == GameManager.GetState("Jump"))
+                    {
+                        GameManager.SetState("Running");
+                    }
+                    break;
+
                 case "_obstacle":
                     GameManager.SetState("Dead");
                     int i =Random.Range(0, 2);
@@ -31,26 +38,16 @@ namespace Player
                         SoundManager.Instance.PlayClip(SoundManager.Instance.obstacleCrash2,0.5f);
                     }
                     break;
+
                 case "_finishLine":
-                    if (Time.time < time+1) 
+                    if (GameManager.currentState == GameManager.GetState("Win")) 
                     {
-                        return;
+                        return; 
                     }
-                    time = Time.time;
+                    SoundManager.Instance.PlayWinMusic();
                     GameManager.SetState("Win");
-                    SoundManager.Instance.PlayClip(SoundManager.Instance.winDanceMusic,0.5f);
                     break;
             }
-        }
-        void OnCollisionExit(Collision collision)
-        {
-            switch (collision.collider.tag)
-            {
-                case "Floor":
-                    GameManager.SetState("Running");
-                    break;
-            }
-        
         }
     }
 }

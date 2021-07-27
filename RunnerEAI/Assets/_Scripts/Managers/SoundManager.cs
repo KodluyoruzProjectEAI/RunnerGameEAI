@@ -8,21 +8,19 @@ using UnityEngine;
 public class SoundManager : Singleton<SoundManager>
 {
     public AudioClip winSound, winDanceMusic, obstacleCrash1, obstacleCrash2, bodyFall, backgroundAmbiance;
-    private void Awake()
+    public AudioSource winMusic;
+    void Awake()
     {
         StartSingleton(this);
     }
-
-    private void OnEnable()
+    void OnEnable()
     {
-        GameManager.OnWin += PlayFinishLineMusic;
+        MenuManager.OnResetGame += ResetMusic;    
     }
-
-    private void OnDisable()
+    public void PlayWinMusic()
     {
-        GameManager.OnWin -= PlayFinishLineMusic;
+        winMusic.Play();
     }
-
     public void PlayClip(AudioClip soundClip,float vol)
     {
         if (soundClip)
@@ -30,14 +28,17 @@ public class SoundManager : Singleton<SoundManager>
             AudioSource.PlayClipAtPoint(soundClip,Camera.main.transform.position,vol);
         }
     }
-
     void PlayFinishLineMusic()
     {
         PlayClip(winDanceMusic,0.2f);
     }
-    
+    void ResetMusic()
+    {
+        winMusic.Stop();
+    }
     // void PlayObstacleCrashSound()
     // {
     //     
     // }
+
 }

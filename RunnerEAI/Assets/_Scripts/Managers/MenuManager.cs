@@ -15,6 +15,7 @@ namespace Managers
         [SerializeField] GameObject LoseMenu;
         [SerializeField] GameObject WinMenu;
         [SerializeField] GameObject TapToPlay_PANEL;
+        [SerializeField] GameObject NextLevelButton;
         [SerializeField] Text DayText;
         void Awake()
         {
@@ -33,6 +34,7 @@ namespace Managers
         void EnableWinMenu()
         {
             WinMenu.SetActive(true);
+            Invoke("EnableNextButton",1f);
         }
         void EnableLoseMenu()
         {
@@ -41,10 +43,15 @@ namespace Managers
         void DisableWinMenu()
         {
             WinMenu.SetActive(false);
+            NextLevelButton.SetActive(false);
         }
         void DisableLoseMenu()
         {
             LoseMenu.SetActive(false);
+        }
+        void EnableNextButton()
+        {
+          NextLevelButton.SetActive(true);
         }
         void EnableTapToPlay()
         {
@@ -59,10 +66,10 @@ namespace Managers
         }
         public void TapToPlay()
         {
-            
             OnCamera?.Invoke();
             TapToPlay_PANEL.SetActive(false);
         }
+        
     }
 }
 
