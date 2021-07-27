@@ -82,6 +82,7 @@ namespace Player
         }
         void PlayerDead()
         {
+            rb.velocity = Vector3.zero;
             VerticalSpeed = 0;
             JumpPower = 0;
             HorizontalSpeed = 0;

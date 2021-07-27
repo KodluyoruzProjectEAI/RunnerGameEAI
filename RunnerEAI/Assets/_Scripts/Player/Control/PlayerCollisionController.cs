@@ -29,12 +29,12 @@ namespace Player
                     {
                         SoundManager.Instance.PlayClip(SoundManager.Instance.obstacleCrash2,0.5f);
                     }
-                    
                     break;
-
                 case "_finishLine":
                     GameManager.SetState("Win");
                     break;
+
+
             }
         }
         void OnCollisionExit(Collision collision)
@@ -44,7 +44,9 @@ namespace Player
                 case "Floor":
                     GameManager.SetState("Running");
                     break;
+            
             }
+        
         }
     }
 }
