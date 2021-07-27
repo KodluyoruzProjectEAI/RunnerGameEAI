@@ -1,36 +1,41 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using Player;
 using UnityEngine;
 
 public class SoundManager : Singleton<SoundManager>
 {
-    public AudioClip winDanceMusic,  obstacleCrash1,obstacleCrash2 , bodyFall,  backgroundAmbiance;
-
+    public AudioClip winSound, winDanceMusic, obstacleCrash1, obstacleCrash2, bodyFall, backgroundAmbiance;
     private void Awake()
     {
         StartSingleton(this);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        
+        GameManager.OnWin += PlayFinishLineMusic;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnWin -= PlayFinishLineMusic;
     }
 
     public void PlayClip(AudioClip soundClip,float vol)
     {
         if (soundClip)
         {
-            AudioSource.PlayClipAtPoint(soundClip,Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(soundClip,Camera.main.transform.position,vol);
         }
     }
 
-    // void FinishLineMusic()
-    // {
-    //     ////play music as long as we are in win state
-    // }
-    //
+    void PlayFinishLineMusic()
+    {
+        PlayClip(winDanceMusic,0.2f);
+    }
+    
     // void PlayObstacleCrashSound()
     // {
     //     
