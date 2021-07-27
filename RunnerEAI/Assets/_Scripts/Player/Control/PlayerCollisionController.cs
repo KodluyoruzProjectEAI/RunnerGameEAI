@@ -10,6 +10,7 @@ namespace Player
     public class PlayerCollisionController : MonoBehaviour
     {
         PlayerController _playerController;
+        float time;
         private void Awake()
         {
             _playerController = GetComponent<PlayerController>();
@@ -31,11 +32,14 @@ namespace Player
                     }
                     break;
                 case "_finishLine":
+                    if (Time.time < time+1) 
+                    {
+                        return;
+                    }
+                    time = Time.time;
                     GameManager.SetState("Win");
                     SoundManager.Instance.PlayClip(SoundManager.Instance.winDanceMusic,0.5f);
                     break;
-
-
             }
         }
         void OnCollisionExit(Collision collision)
