@@ -32,6 +32,7 @@ namespace Player
                     break;
                 case "_finishLine":
                     GameManager.SetState("Win");
+                    SoundManager.Instance.PlayClip(SoundManager.Instance.winDanceMusic,0.5f);
                     break;
 
 
