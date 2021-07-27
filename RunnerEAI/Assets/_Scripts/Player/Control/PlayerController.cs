@@ -49,6 +49,7 @@ namespace Player
         }
         void Update()
         {
+            Debug.Log(GameManager.currentState);
             if (rb.velocity.y != 0)
             {
                 IsHorizontal = false;

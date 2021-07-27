@@ -54,14 +54,16 @@ namespace slide
                 {
                     stamina -= 100;
                     StartCoroutine("StartSuperRunning");
+                    GameManager.SetState("SuperRunning");
                 }
             }
         }
         IEnumerator StartSuperRunning()
-        {   
-            GameManager.SetState("SuperRunning"); 
+        {
+
             yield return new WaitForSeconds(_playerData.SuperRunLifeTime);
-            if (GameManager.currentState != GameManager.GetState("Dead"))
+            
+            if (GameManager.currentState != GameManager.GetState("Dead") && GameManager.currentState != GameManager.GetState("Start"))
             { 
                 GameManager.SetState("Running");
             }

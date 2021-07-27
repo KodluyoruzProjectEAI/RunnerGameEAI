@@ -17,6 +17,7 @@ namespace Animation
         {
             GameManager.OnJump += JumpAnim;
             GameManager.OnRunning += RunAnim;
+            GameManager.OnWin += WinAnim;
             GameManager.OnDead += DeadAnim;
             GameManager.OnStart += IdleAnim;
             GameManager.OnSuperRunning += SuperRunAnim;
@@ -25,17 +26,18 @@ namespace Animation
         {
             GameManager.OnJump -= JumpAnim;
             GameManager.OnRunning -= RunAnim;
+            GameManager.OnWin -= WinAnim;
             GameManager.OnDead -= DeadAnim;
             GameManager.OnStart -= IdleAnim;
             GameManager.OnSuperRunning -= SuperRunAnim;
         }
         void IdleAnim()
         {
-            anim.SetTrigger("IsIdle");
             anim.ResetTrigger("IsJump");
             anim.ResetTrigger("IsRun");
             anim.ResetTrigger("IsSuperRun");
             anim.ResetTrigger("IsDead");
+            anim.SetTrigger("IsIdle");
         }
         void RunAnim()
         {
@@ -60,6 +62,15 @@ namespace Animation
             anim.ResetTrigger("IsSuperRun");
             anim.ResetTrigger("IsDead");
             anim.SetTrigger("IsJump");
+        }
+        void WinAnim()
+        {
+            anim.ResetTrigger("IsIdle");
+            anim.ResetTrigger("IsRun");
+            anim.ResetTrigger("IsSuperRun");
+            anim.ResetTrigger("IsDead");
+            anim.ResetTrigger("IsJump");
+            anim.SetTrigger("IsWin");
         }
         void DeadAnim()
         {

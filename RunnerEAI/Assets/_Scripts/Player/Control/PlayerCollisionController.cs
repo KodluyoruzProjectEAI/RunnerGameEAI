@@ -11,7 +11,7 @@ namespace Player
     {
         PlayerController _playerController;
         float time;
-        private void Awake()
+        void Awake()
         {
             _playerController = GetComponent<PlayerController>();
         }
@@ -49,7 +49,6 @@ namespace Player
                 case "Floor":
                     GameManager.SetState("Running");
                     break;
-            
             }
         
         }
