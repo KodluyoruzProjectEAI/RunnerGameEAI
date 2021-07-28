@@ -15,7 +15,7 @@ public class SoundManager : Singleton<SoundManager>
     }
     void OnEnable()
     {
-        MenuManager.OnResetGame += ResetMusic;    
+        MenuManager.OnResetGame += AllResetMusic;    
     }
     void Update()
     {
@@ -24,15 +24,16 @@ public class SoundManager : Singleton<SoundManager>
             case GameManager.State.Running:
                 RunMusic();
                 break;
-
+            case GameManager.State.Jump:
+                AllResetMusic();
+                break;
             case GameManager.State.SuperRunning:
                 SuperRunMusic();
             break;
+            case GameManager.State.Dead:
+                AllResetMusic();
+                break;
         }    
-    }
-    public void PlayWinMusic()
-    {
-        winMusic.Play();
     }
     public void RunMusic()
     {
@@ -40,7 +41,7 @@ public class SoundManager : Singleton<SoundManager>
         {
             return;
         }
-        superRunMusic.Stop();
+        AllResetMusic();
         runMusic.Play();
     }
     public void SuperRunMusic()
@@ -49,27 +50,33 @@ public class SoundManager : Singleton<SoundManager>
         {
             return;
         }
-        runMusic.Stop();
+        AllResetMusic();
         superRunMusic.Play();
     }
-    public void PlayClip(AudioClip soundClip,float vol)
+    public void PlayWinMusic()
     {
-        if (soundClip)
-        {
-            AudioSource.PlayClipAtPoint(soundClip,Camera.main.transform.position,vol);
-        }
+        AllResetMusic();
+        winMusic.Play();
     }
-    void PlayFinishLineMusic()
-    {
-        PlayClip(winDanceMusic,0.2f);
-    }
-    void ResetMusic()
-    {
+    void AllResetMusic() 
+    { 
         winMusic.Stop();
+        runMusic.Stop();
+        superRunMusic.Stop();
     }
     // void PlayObstacleCrashSound()
     // {
     //     
     // }
-
+    public void PlayClip(AudioClip soundClip, float vol)
+    {
+        if (soundClip)
+        {
+            AudioSource.PlayClipAtPoint(soundClip, Camera.main.transform.position, vol);
+        }
+    }
+    void PlayFinishLineMusic()
+    {
+        PlayClip(winDanceMusic, 0.2f);
+    }
 }
