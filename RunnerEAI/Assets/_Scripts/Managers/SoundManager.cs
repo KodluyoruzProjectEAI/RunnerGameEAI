@@ -8,7 +8,7 @@ using UnityEngine;
 public class SoundManager : Singleton<SoundManager>
 {
     public AudioClip winSound, winDanceMusic, obstacleCrash1, obstacleCrash2, bodyFall, backgroundAmbiance;
-    public AudioSource winMusic;
+    public AudioSource winMusic,runMusic;
     void Awake()
     {
         StartSingleton(this);
@@ -17,9 +17,27 @@ public class SoundManager : Singleton<SoundManager>
     {
         MenuManager.OnResetGame += ResetMusic;    
     }
-    public void PlayWinMusic()
+    void Update()
     {
+        switch (GameManager.currentState)
+        {
+            case GameManager.State.Running:
+                RunMusic(1);
+            break;
+
+            case GameManager.State.SuperRunning:
+                RunMusic(1.5f);
+            break;
+        }    
+    }
+    public void PlayWinMusic()
+    {   
         winMusic.Play();
+    }
+    public void RunMusic(float pitchValue)
+    {
+        runMusic.pitch = pitchValue;
+        runMusic.Play();
     }
     public void PlayClip(AudioClip soundClip,float vol)
     {
