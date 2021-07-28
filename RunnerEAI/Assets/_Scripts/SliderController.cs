@@ -20,6 +20,9 @@ namespace slide
         private float maxStamina;
         private float startZ;
         private float finishZ;
+        private int bestTime;
+
+        [SerializeField] private Text timeText,timeTextInGame;
         void OnEnable()
         {
             MenuManager.OnResetGame += ResetSlider;
@@ -32,6 +35,7 @@ namespace slide
             stamina = 0;
             maxStamina = 100;
             finishZ = 155f;
+            Timer();
         }
 
         void Update()
@@ -41,6 +45,10 @@ namespace slide
             
             startZ = playerTransform.position.z;
             completionFill.fillAmount = startZ / finishZ;
+
+            timeText.text = bestTime.ToString();
+            timeTextInGame.text = timeText.text;
+            
         }
         public void Stamina(int integer)
         {
@@ -72,6 +80,23 @@ namespace slide
         {
             stamina = 0;
         }
+        void ResetTime()
+        {
+            //stamina = 0;
+        }
+
+        void AddOneSec()
+        {
+            bestTime++;
+        }
+        void Timer()
+        {
+            if (GameManager.currentState == GameManager.State.Running)
+            {
+                InvokeRepeating("AddOneSec",0,1f);
+            }
+        }
+        
     }
 }
 
