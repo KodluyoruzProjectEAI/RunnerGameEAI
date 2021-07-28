@@ -51,7 +51,7 @@ namespace Managers
         }
         void EnableNextButton()
         {
-          NextLevelButton.SetActive(true);
+            NextLevelButton.SetActive(true);
         }
         void EnableTapToPlay()
         {

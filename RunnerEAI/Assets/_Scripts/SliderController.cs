@@ -8,21 +8,19 @@ using UnityEngine.UI;
 namespace slide
 {
     public class SliderController : MonoBehaviour
-    {   
+    {
         public Image coffee;
         public Image completionFill;
         [SerializeField]
-        private Transform playerTransform;
+        Transform playerTransform;
         PlayerData _playerData;
         Rigidbody playerRb;
         [SerializeField]
-        private float stamina;
-        private float maxStamina;
-        private float startZ;
-        private float finishZ;
-        private int bestTime;
-
-        [SerializeField] private Text timeText,timeTextInGame;
+        float stamina;
+        float maxStamina;
+        float startZ;
+        float finishZ;
+     
         void OnEnable()
         {
             MenuManager.OnResetGame += ResetSlider;
@@ -35,20 +33,15 @@ namespace slide
             stamina = 0;
             maxStamina = 100;
             finishZ = 155f;
-            Timer();
         }
 
         void Update()
         {
             stamina = Mathf.Clamp(stamina, 0, maxStamina);
             coffee.fillAmount = stamina / maxStamina;// fraction needed because fillAmount is 0 to 1 in value
-            
+
             startZ = playerTransform.position.z;
             completionFill.fillAmount = startZ / finishZ;
-
-            timeText.text = bestTime.ToString();
-            timeTextInGame.text = timeText.text;
-            
         }
         public void Stamina(int integer)
         {
@@ -58,7 +51,7 @@ namespace slide
             }
             else if (integer == -1 && stamina == maxStamina)
             {
-                if (GameManager.currentState != GameManager.GetState("Dead") && playerRb.velocity.y==0)
+                if (GameManager.currentState != GameManager.GetState("Dead") && playerRb.velocity.y == 0)
                 {
                     stamina -= 100;
                     StartCoroutine("StartSuperRunning");
@@ -70,33 +63,18 @@ namespace slide
         {
 
             yield return new WaitForSeconds(_playerData.SuperRunLifeTime);
-            
+
             if (GameManager.currentState != GameManager.GetState("Dead") && GameManager.currentState != GameManager.GetState("Start"))
-            { 
+            {
                 GameManager.SetState("Running");
             }
         }
+
         void ResetSlider()
         {
             stamina = 0;
         }
-        void ResetTime()
-        {
-            //stamina = 0;
-        }
-
-        void AddOneSec()
-        {
-            bestTime++;
-        }
-        void Timer()
-        {
-            if (GameManager.currentState == GameManager.State.Running)
-            {
-                InvokeRepeating("AddOneSec",0,1f);
-            }
-        }
-        
+      
     }
-}
 
+}
