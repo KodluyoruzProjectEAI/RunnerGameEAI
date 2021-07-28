@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Managers;
@@ -7,8 +6,8 @@ using UnityEngine;
 
 public class SoundManager : Singleton<SoundManager>
 {
-    public AudioClip winSound, winDanceMusic, obstacleCrash1, obstacleCrash2, bodyFall, backgroundAmbiance;
-    public AudioSource winMusic,runMusic,superRunMusic;
+    public AudioClip winSound, winDanceMusic, bodyFall, backgroundAmbiance;
+    public AudioSource winMusic,runMusic,superRunMusic,obstacleCrash1,obstacleCrash2;
     void Awake()
     {
         StartSingleton(this);
@@ -24,18 +23,34 @@ public class SoundManager : Singleton<SoundManager>
             case GameManager.State.Running:
                 RunMusic();
                 break;
+
             case GameManager.State.Jump:
                 AllResetMusic();
                 break;
+
             case GameManager.State.SuperRunning:
                 SuperRunMusic();
             break;
-            case GameManager.State.Dead:
-                AllResetMusic();
+
+            case GameManager.State.Win:
+                WinMusic();
                 break;
         }    
     }
-    public void RunMusic()
+   public void ObstacleCrashMusic()
+    {   
+        AllResetMusic();
+        int i = Random.Range(0, 2);
+        if (i == 0)
+        {
+            obstacleCrash1.Play();
+        }
+        else
+        {
+            obstacleCrash2.Play();
+        }
+    }
+    void RunMusic()
     {
         if (runMusic.isPlaying) 
         {
@@ -44,7 +59,7 @@ public class SoundManager : Singleton<SoundManager>
         AllResetMusic();
         runMusic.Play();
     }
-    public void SuperRunMusic()
+    void SuperRunMusic()
     {
         if (superRunMusic.isPlaying)
         {
@@ -53,13 +68,17 @@ public class SoundManager : Singleton<SoundManager>
         AllResetMusic();
         superRunMusic.Play();
     }
-    public void PlayWinMusic()
+    void WinMusic()
     {
+        if (winMusic.isPlaying)
+        {
+            return;
+        }
         AllResetMusic();
         winMusic.Play();
     }
     void AllResetMusic() 
-    { 
+    {
         winMusic.Stop();
         runMusic.Stop();
         superRunMusic.Stop();
