@@ -27,16 +27,12 @@ namespace Player
                     break;
 
                 case "_obstacle":
+                    if (GameManager.currentState == GameManager.GetState("Dead"))
+                    {
+                        return;
+                    }
                     GameManager.SetState("Dead");
-                    int i =Random.Range(0, 2);
-                    if (i == 0)
-                    {
-                        SoundManager.Instance.PlayClip(SoundManager.Instance.obstacleCrash1,0.5f);
-                    }
-                    else
-                    {
-                        SoundManager.Instance.PlayClip(SoundManager.Instance.obstacleCrash2,0.5f);
-                    }
+                    SoundManager.Instance.ObstacleCrashMusic();
                     break;
 
                 case "_finishLine":
@@ -44,7 +40,6 @@ namespace Player
                     {
                         return; 
                     }
-                    SoundManager.Instance.PlayWinMusic();
                     GameManager.SetState("Win");
                     break;
             }
